@@ -1,0 +1,66 @@
+
+@font-face {
+    font-family: 'SansationLight';
+    src: url('fonts/fontawesome-webfont.woff');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_423">Text with this font applied</p> */
+.fontsforweb_fontid_423 {
+    font-family: 'SansationLight' !important;
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+h1 {
+    text-align: center;
+    margin-left: 25%;
+    text-shadow: 2px 2px #f8f8f8;
+
+}
+
+textarea {
+    min-height: 80px !important;
+}
+
+.login-panel {
+    margin-top: 25%;
+}
+
+.center {
+    width: 100px;
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.space {
+    margin: 2%;
+}
+
+.align-right {
+    float: right;
+}
+
+#footer {
+    text-align: center;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
+
+#body {
+    padding-bottom:60px;   /* Height of the footer */
+}
+
+#logo {
+    -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;
+}
+
+#logo:hover {
+    width: 30px;
+    height: 30px;
+}

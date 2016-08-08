@@ -1,0 +1,51 @@
+body {
+    background: yellow;
+}
+
+
+#textContainer {
+    text-align: center;
+    margin: 10px;
+}
+
+#imageContainer {
+    text-align: center;
+    margin: 10px;
+}
+
+img {
+    margin: 10px;
+    width: 350px;
+    height: 350px;
+}
+
+#text_0, #text_1, #text_2 {
+    font-size: 450%;
+    color: mediumseagreen;
+    font-style: italic;
+}
+
+#text_3, #text_4, #text_5 {
+    font-size: 350%;
+    color: aquamarine;
+}
+
+#text_6, #text_7 {
+    font-size: 200%;
+    color: cadetblue;
+}
+
+#text_8, #text_9 {
+    font-size: 100%;
+    color: lightgreen;
+}
+
+#videoContainer {
+    text-align: center;
+}
+
+video {
+    border-style: dashed;
+    border-width: medium;
+    border-color: #2aabd2;
+}

@@ -1,0 +1,168 @@
+[
+{
+  "name" : "fourth msg",
+  "textArr" : [
+    "This is the first line of fourth msg",
+    "This is the second line of fourth msg"
+  ],
+  "imageArr" : [ ],
+  "videoPath": "",
+  "screensArr" : [
+    1
+  ],
+  "templateUrl" : "templates/A.css",
+    "displayLength" : 5,
+  "timeframes" : [
+    {
+      "fromDate" : 1459198800,
+      "toDate" : 1460667600,
+      "daysInWeek" : [
+        1
+      ],
+      "fromTime" : 15,
+      "toTime" : 19
+    }
+  ]
+},
+{
+  "name" : "third msg",
+  "textArr" : [ ],
+  "imageArr" : [ ],
+  "videoPath": "",
+  "screensArr" : [
+    2,
+    3
+  ],
+  "templateUrl" : "templates/C.css",
+  "displayLength" : 5,
+  "timeframes" : [
+    {
+      "fromDate" : 1462050000,
+      "toDate" : 1465938000,
+      "daysInWeek" : [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "fromTime" : 8,
+      "toTime" : 22
+    }
+  ]
+},
+{
+  "name" : "second msg",
+  "textArr" : [
+    "This is line number 0",
+    "This is line number 1",
+    "This is line number 2",
+    "This is line number 3",
+    "This is line number 4",
+    "This is line number 5",
+    "This is line number 6",
+    "This is line number 7",
+    "This is line number 8",
+    "This is line number 9"
+  ],
+  "imageArr" : [
+    "http://images.mid-day.com/images/2014/nov/26Nicole-Scherzinger-1.jpg"
+  ],
+  "videoPath": "",
+  "screensArr" : [
+    1,
+    3
+  ],
+  "templateUrl" : "templates/B.css",
+  "displayLength" : 10,
+  "timeframes" : [
+    {
+      "fromDate" : 1456783200,
+      "toDate" : 1461963600,
+      "daysInWeek" : [
+        2,
+        3
+      ],
+      "fromTime" : 10,
+      "toTime" : 16
+    }
+  ]
+},
+{
+  "name" : "first msg",
+  "textArr" : [
+    "This is the first line of text",
+    "This is the second line of text",
+    "This is the third line of text",
+    "This is the fourth line of text"
+  ],
+  "imageArr" : [
+    "http://www.tahiti.com/images1/thumbs/BOBITS_Hero_Module_Thumb1_600x360.jpg",
+    "http://vignette2.wikia.nocookie.net/spongebob/images/a/a4/Spongebob_SquarePants.jpg"
+  ],
+  "videoPath": "http://techslides.com/demos/sample-videos/small.mp4",
+  "screensArr" : [
+    1,
+    2
+  ],
+  "templateUrl" : "templates/A.css",
+  "displayLength" : 5,
+  "timeframes" : [
+    {
+      "fromDate" : 1451599200,
+      "toDate" : 1483135200,
+      "daysInWeek" : [
+        1
+      ],
+      "fromTime" : 6,
+      "toTime" : 12
+    },
+    {
+      "fromDate" : 1451599200,
+      "toDate" : 1483135200,
+      "daysInWeek" : [
+        3
+      ],
+      "fromTime" : 13,
+      "toTime" : 20
+    }
+  ]
+},
+{
+  "name" : "fifth msg",
+  "textArr" : [
+    "This is line number 0",
+    "This is line number 1",
+    "This is line number 2",
+    "This is line number 3",
+    "This is line number 4",
+    "This is line number 5",
+    "This is line number 6"
+  ],
+  "imageArr" : [
+    "http://www.magweb.com/picts/nm1566474.jpg",
+    "http://media1.break.com/dnet/media/376/741/2741376/c42d1fd9-75ea-4ea6-a720-12360f47d540.jpg"
+  ],
+  "videoPath": "",
+  "screensArr" : [
+    3
+  ],
+  "templateUrl" : "templates/B.css",
+  "displayLength" : 5,
+  "timeframes" : [
+    {
+      "fromDate" : 1459458000,
+      "toDate" : 1461963600,
+      "daysInWeek" : [
+        1,
+        2,
+        3
+      ],
+      "fromTime" : 1,
+      "toTime" : 23
+    }
+  ]
+}
+]

@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h3 class="modal-title">Message Details</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div>
+            <span class="col-md-2">Name:</span>
+            <input type="text" ng-model="msg.name" class="col-md-10" required>
+        </div>
+
+        <div>
+            <span class="col-md-2">Texts:</span>
+            <textarea class="col-md-10"
+                      ng-model="msg.textArr"
+                      ng-list="&#10;"
+                      ng-trim="false"></textarea>
+        </div>
+
+        <div>
+            <span class="col-md-2">Video:</span>
+            <input type="text" ng-model="msg.videoPath" class="col-md-10" required>
+        </div>
+
+        <div>
+            <span class="col-md-2">Images:</span>
+            <textarea class="col-md-10"
+                      ng-model="msg.imageArr"
+                      ng-list="&#10;"
+                      ng-trim="false"></textarea>
+        </div>
+
+        <div>
+            <span class="col-md-2">Screens:</span>
+            <textarea class="col-md-10"
+                      ng-model="msg.screensArr"
+                      ng-list="&#10;"
+                      ng-trim="false"></textarea>
+        </div>
+
+        <div>
+            <span class="col-md-2">Template URL:</span>
+            <select name="singleSelect" ng-model="msg.templateUrl" class="col-md-10" required>
+                <option value="templates/A.css">Template A</option>
+                <option value="templates/B.css">Template B</option>
+                <option value="templates/C.css">Template C</option>
+            </select>
+        </div>
+
+        <div>
+            <span class="col-md-2">Display Length:</span>
+            <input type="number" min="1" max="100" step="1" ng-model="msg.displayLength" class="col-md-10">
+        </div>
+
+        <div>
+            <span class="col-md-2">
+                Timeframes:
+            </span>
+            <aside>
+                <a href="" ng-click="addTimeframe()" class="btn btn-success btn-xs command-button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </aside>
+            <div class="col-md-10">
+                <div class="panel" ng-repeat="timeframe in msg.timeframes" >
+                    <a href=""
+                       ng-click="removeTimeframe(timeframe)"
+                       class="btn btn-danger btn-xs command-button"
+                       ng-disabled="msg.timeframes.length <= 1">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    <div>
+                        <span class="col-md-2">From date:</span>
+                        <input type="date" ng-model="timeframe.fromDate" class="date-element"/>
+                    </div>
+                    <div>
+                        <span class="col-md-2">From time:</span>
+                        <input type="number" min="1" max="23" step="1" ng-model="timeframe.fromTime"/>
+                    </div>
+                    <div>
+                        <span class="col-md-2">To date:</span>
+                        <input type="date" ng-model="timeframe.toDate" class="date-element"/>
+                    </div>
+                    <div>
+                        <span class="col-md-2">To time:</span>
+                        <input type="number" min="1" max="23" step="1" ng-model="timeframe.toTime"/>
+                    </div>
+                    <div>
+                        <span class="col-md-2">Days in week:</span>
+                        <textarea
+                                  ng-model="timeframe.daysInWeek"
+                                  ng-list="&#10;"
+                                  ng-trim="false"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

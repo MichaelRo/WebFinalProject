@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div>
+        <h3>Manage the messages in the system
+            <aside>
+                <a href="" ng-click="addMessage()" class="btn btn-success btn-md command-button align-right">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </aside>
+        </h3>
+        <div>
+            <h5>Free text search:</h5>
+            <input type="text"
+                   class="form-control"
+                   ng-change="filterMessages()"
+                   placeholder="Search message ..."
+                   ng-model="searchText">
+        </div>
+        <div>
+            <h5>search a message that:</h5>
+            <div>
+                <span>contains atleast </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.txtFieldsCount">
+                <span>text fields and </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.imgFieldsCount">
+                <span>image fields and is displayed for atleast </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.minDisplayLength">
+                <span>seconds </span>
+                <button class="btn btn-primary" type="button" ng-click="searchMessages('min')">Search</button>
+            </div>
+        </div>
+        <div>
+            <h5>OR</h5>
+            <div>
+                <span>contains maximum of </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.txtFieldsCount">
+                <span>text fields or </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.imgFieldsCount">
+                <span>image fields and is displayed for maximum of </span>
+                <input type="number" min="0" max="10" step="1" ng-model="searchParams.minDisplayLength">
+                <span>seconds </span>
+                <button class="btn btn-primary" type="button" ng-click="searchMessages('max')">Search</button>
+            </div>
+        </div>
+        <div>
+            <h5>Yoda speak:</h5>
+            <input type="text"
+                   class="form-control"
+                   placeholder="sentence to yodalize ..."
+                   ng-model="yodaSentence">
+            <button class="btn btn-primary" type="button" ng-click="yodalize()">Yodalize</button>
+        </div>
+    </div>
+    <div class="row space">
+        <div ui-grid="gridOptions" ui-grid-selection ui-grid-edit class="grid"></div>
+    </div>
+</div>

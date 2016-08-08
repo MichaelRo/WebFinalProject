@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="adminApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Ads - Admin Console</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet"
+          href="css/bootstrap.min.css">
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css"
+          rel="stylesheet"
+          type="text/css">
+
+    <!-- Statistics CSS -->
+    <link href="css/sequences.css" rel="stylesheet"/>
+    <link href="css/bar-chart.css" rel="stylesheet"/>
+
+    <!-- Messages CSS -->
+    <link rel="stylesheet" href="ui-grid.css" type="text/css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css" type="text/css"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Underscore JS -->
+    <script src="underscore-min.js"></script>
+
+    <!-- Angular and bootstrap -->
+    <script src="angular.min.js"></script>
+    <script src="ui-bootstrap.min.js"></script>
+    <script src="ui-bootstrap-tpls.min.js"></script>
+    <script src='angular-ui-router.min.js'></script>
+    <script src="ui-router-tabs.js"></script>
+
+    <!-- Scripts for messages module -->
+    <script src="ui-grid.min.js"></script>
+
+    <!-- Application's services and controller -->
+    <script src="js/adminApp.js"></script>
+    <script src="js/authService.js"></script>
+    <script src="js/adminCtrl.js"></script>
+    <script src="js/msgsCtrl.js"></script>
+    <script src="js/updateMsgCtrl.js"></script>
+    <script src="js/addMsgCtrl.js"></script>
+    <script src="js/statsCtrl.js"></script>
+
+    <!-- Scripts for statistics module -->
+    <script src="js/d3.min.js"></script>
+    <script src="js/bar-chart.js"></script>
+    <script src="js/sequences.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <h1>
+            <canvas width="25" height="25" id="logo"></canvas>
+            Admin Console
+        </h1>
+    </header>
+
+    <div class="container">
+        <div id="body">
+            <section id="content">
+                <div ui-view></div>
+            </section>
+        </div>
+        <div id="footer">
+            <footer>
+               Michael Roytman,Itay Desalto, MArom Felz © All Rights resereved
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>

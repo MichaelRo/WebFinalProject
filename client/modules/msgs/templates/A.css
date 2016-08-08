@@ -1,0 +1,55 @@
+body {
+    background: coral;
+    opacity: 0.75;
+}
+
+#textContainer {
+    text-align: center;
+    margin: 10px;
+}
+
+#imageContainer {
+    text-align: center;
+    margin: 20px;
+}
+
+img {
+    margin: 10px;
+    width: 200px;
+    height: 250px;
+}
+
+#text_0, #text_1, #text_2 {
+    font-size: 300%;
+    color: floralwhite;
+}
+
+#text_3, #text_4, #text_5 {
+    font-size: 250%;
+    color: antiquewhite;
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+
+#text_6, #text_7 {
+    font-size: 200%;
+    color: ghostwhite;
+}
+
+#text_8, #text_9 {
+    font-size: 150%;
+    color: whitesmoke;
+}
+
+#videoContainer {
+    text-align: center;
+}
+
+video {
+    margin: 50px;
+    border-style: solid;
+    border-width: medium;
+    border-radius: 25px;
+    border-color: cornflowerblue;
+}
