@@ -89,36 +89,36 @@ function displayMessages(messages, indexOfMessageToDisplay)
  *  Manipulates the DOM tree to display the given message (Updates the HTML)
  *
  */
-function displayMessage(msg)
+function displayMessage(message)
 {
     // if we already found a css link element
     if ($("link[rel='stylesheet']").length)
     {
-        $("link[rel='stylesheet']").attr("href", msg.templateUrl);
+        $("link[rel='stylesheet']").attr("href", message.templateUrl);
     }
     else
     {
         // if it doesn't exist, add it
-        $("head").append("<link rel='stylesheet' type='text/css' href='" + msg.templateUrl + "' />")
+        $("head").append("<link rel='stylesheet' type='text/css' href='" + message.templateUrl + "' />")
     }
 
     // clear all child elements
     $("#textContainer").empty();
 
     // foreach text in the message add a div with the given text
-    for (i = 0; i < msg.textArr.length; i++)
+    for (i = 0; i < message.textArray.length; i++)
     {
-        $("#textContainer").append( "<div id='text_" + i + "'>" + msg.textArr[i] + "</div>");
+        $("#textContainer").append( "<div id='text_" + i + "'>" + message.textArray[i] + "</div>");
     }
 
     // clear all child elements
     $("#videoContainer").empty();
 
     // if message contains a video
-    if (msg.videoPath !== "")
+    if (message.videoPath !== "")
     {
         $("#videoContainer").append("<video loop autoplay>" +
-                                        "<source src='" + msg.videoPath + "' type=video/mp4>" +
+                                        "<source src='" + message.videoPath + "' type=video/mp4>" +
                                     "</video>");
     }
 
@@ -126,9 +126,9 @@ function displayMessage(msg)
     $("#imageContainer").empty();
 
     // foreach image in the message add a img with the given path
-    for (i = 0; i < msg.imageArr.length; i++)
+    for (i = 0; i < message.imageArray.length; i++)
     {
-        $("#imageContainer").append( "<img id='image_" + i + "' src='" + msg.imageArr[i] + "'></img>");
+        $("#imageContainer").append( "<img id='image_" + i + "' src='" + message.imageArray[i] + "'></img>");
     }
 }
 

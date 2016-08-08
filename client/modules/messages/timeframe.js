@@ -8,9 +8,9 @@ var app = app || {};
 
 
 app.Timeframe = function (fromDate, toDate, daysInWeek, fromTime, toTime) {
-    this.fromDate = fromDate;
-    this.toDate= toDate;
+    this.startDate = fromDate;
+    this.endDate= toDate;
     this.daysInWeek= daysInWeek;
-    this.fromTime = fromTime;
-    this.toTime = toTime;
+    this.startTime = fromTime;
+    this.endTime = toTime;
 }

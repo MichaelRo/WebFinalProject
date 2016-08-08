@@ -15,31 +15,31 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: '/login',
             templateUrl: '../partials/login.html',
-            controller: 'adminCtrl',
+            controller: 'adminController',
             access: {restricted: false}
         })
         .state('logout', {
             url: '/login',
             templateUrl: '../partials/login.html',
-            controller: 'adminCtrl',
+            controller: 'adminController',
             access: {restricted: false}
         })
         .state('dashboard', {
             url: '/',
             templateUrl: '../partials/dashboard.html',
-            controller: 'adminCtrl',
+            controller: 'adminController',
             access: {restricted: true},
         })
         .state('dashboard.stats', {
             url: 'stats',
-            controller: 'statsCtrl',
+            controller: 'statsController',
             templateUrl: '../partials/stats.html',
             access: {restricted: true}
         })
-        .state('dashboard.msgs', {
-            url: 'msgs',
-            controller: 'msgsCtrl',
-            templateUrl: '../partials/msgs.html',
+        .state('dashboard.messages', {
+            url: 'messages',
+            controller: 'messagesController',
+            templateUrl: '../partials/messages.html',
             access: {restricted: true}
         });
 

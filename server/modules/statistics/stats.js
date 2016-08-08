@@ -21,7 +21,7 @@ module.exports = function statsModule(app, db, path, express) {
         var counter = 0;
 
         // get the distinct messages templates
-        db.collection('msgs')
+        db.collection('messages')
             .distinct('templateUrl')
             .then(function (templates) {
                     // update the amount of records we need to write
@@ -31,9 +31,9 @@ module.exports = function statsModule(app, db, path, express) {
                         // for every templates iterate the days in week
                         daysInWeek.forEach(function (day, innerIndex, days) {
 
-                            // count the msgs in the database
+                            // count the messages in the database
                             // with the given template and given name
-                            db.collection('msgs')
+                            db.collection('messages')
                               .count(
                                 {
                                 "templateUrl": template,
@@ -93,7 +93,7 @@ module.exports = function statsModule(app, db, path, express) {
         // iterate the days in week
         daysInWeek.forEach(function (day, index, days) {
             // find the messages displayed in the given day and group them by display length
-            db.collection('msgs').aggregate(
+            db.collection('messages').aggregate(
                 [
                     { $match: { 'timeframes.daysInWeek': index } },
                     { $group: { "_id": "$displayLength", "count": { $sum: 1 } } }

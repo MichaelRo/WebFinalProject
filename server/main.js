@@ -19,7 +19,7 @@ var passport = require('passport');
 // server modules
 var statsModule = require('./modules/statistics/stats.js');
 var adminModule = require('./modules/admin/admin.js');
-var msgsModule = require('./modules/msgs/msgs.js');
+var messagesModule = require('./modules/messages/messages.js');
 
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
@@ -72,7 +72,7 @@ MongoClient.connect(mongoUrl, function(err, db) {
     // create instances and init each application module
     var admin = new adminModule(app, db, path, express, passport);
     var stats = new statsModule(app, db, path, express);
-    var msgs = new msgsModule(app, db, path, express, mongodb, io);
+    var messages = new messagesModule(app, db, path, express, mongodb, io);
 
     // define connection event
     io.sockets.on('connection', function(client){
@@ -122,7 +122,7 @@ MongoClient.connect(mongoUrl, function(err, db) {
  messages[i].timeframes[j].fromDate = Date.parse(messages[i].timeframes[j].fromDate)/1000;
  }
  }
- db.collection("msgs").insertMany(messages);
+ db.collection("messages").insertMany(messages);
  }
  });
  */

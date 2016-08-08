@@ -4,7 +4,7 @@
  * Marom Felz
  */
 // setup admin controller
-angular.module('adminApp').controller('adminCtrl', ['$scope', '$state', '$location', '$window', 'AuthService',
+angular.module('adminApp').controller('adminController', ['$scope', '$state', '$location', '$window', 'AuthService',
     function ($scope, $state, $location, $window, AuthService) {
 
         /*
@@ -17,7 +17,7 @@ angular.module('adminApp').controller('adminCtrl', ['$scope', '$state', '$locati
         // To select the messages tab by default, go the the message sub state
         // if navigation to dashboard as conducted
         if ($state.current.name === 'dashboard') {
-            $state.go('dashboard.msgs');
+            $state.go('dashboard.messages');
         }
 
 
@@ -27,7 +27,7 @@ angular.module('adminApp').controller('adminCtrl', ['$scope', '$state', '$locati
         $scope.adminTabs   = [
             {
                 heading: 'Messages',
-                route:   'dashboard.msgs'
+                route:   'dashboard.messages'
             },
             {
                 heading: 'Statistics',

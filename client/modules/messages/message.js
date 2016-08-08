@@ -34,7 +34,7 @@ app.Message.prototype.addText = function(text) {
     }
 }
 
-app.Message.prototype.addTimeframe = function(fromDate, toDate, daysInWeek, fromTime, toTime)
+app.Message.prototype.addTimeFrame = function(fromDate, toDate, daysInWeek, fromTime, toTime)
 {
     this.timeframes[this.timeframes.length] = new app.Timeframe(fromDate, toDate, daysInWeek, fromTime, toTime);
 }

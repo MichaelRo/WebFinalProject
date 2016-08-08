@@ -5,26 +5,26 @@
     <div class="container-fluid">
         <div>
             <span class="col-md-2">Name:</span>
-            <input type="text" ng-model="msg.name" class="col-md-10" required>
+            <input type="text" ng-model="message.name" class="col-md-10" required>
         </div>
 
         <div>
             <span class="col-md-2">Texts:</span>
             <textarea class="col-md-10"
-                      ng-model="msg.textArr"
+                      ng-model="message.textArr"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
 
         <div>
             <span class="col-md-2">Video:</span>
-            <input type="text" ng-model="msg.videoPath" class="col-md-10" required>
+            <input type="text" ng-model="message.videoPath" class="col-md-10" required>
         </div>
 
         <div>
             <span class="col-md-2">Images:</span>
             <textarea class="col-md-10"
-                      ng-model="msg.imageArr"
+                      ng-model="message.imageArr"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
@@ -32,14 +32,14 @@
         <div>
             <span class="col-md-2">Screens:</span>
             <textarea class="col-md-10"
-                      ng-model="msg.screensArr"
+                      ng-model="message.screensArr"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
 
         <div>
             <span class="col-md-2">Template URL:</span>
-            <select name="singleSelect" ng-model="msg.templateUrl" class="col-md-10" required>
+            <select name="singleSelect" ng-model="message.templateUrl" class="col-md-10" required>
                 <option value="templates/A.css">Template A</option>
                 <option value="templates/B.css">Template B</option>
                 <option value="templates/C.css">Template C</option>
@@ -48,7 +48,7 @@
 
         <div>
             <span class="col-md-2">Display Length:</span>
-            <input type="number" min="1" max="100" step="1" ng-model="msg.displayLength" class="col-md-10">
+            <input type="number" min="1" max="100" step="1" ng-model="message.displayLength" class="col-md-10">
         </div>
 
         <div>
@@ -56,16 +56,16 @@
                 Timeframes:
             </span>
             <aside>
-                <a href="" ng-click="addTimeframe()" class="btn btn-success btn-xs command-button">
+                <a href="" ng-click="addTimeFrame()" class="btn btn-success btn-xs command-button">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </aside>
             <div class="col-md-10">
-                <div class="panel" ng-repeat="timeframe in msg.timeframes" >
+                <div class="panel" ng-repeat="timeframe in message.timeFrames" >
                     <a href=""
                        ng-click="removeTimeframe(timeframe)"
                        class="btn btn-danger btn-xs command-button"
-                       ng-disabled="msg.timeframes.length <= 1">
+                       ng-disabled="message.timeFrames.length <= 1">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
                     <div>

@@ -4,20 +4,20 @@
  * Marom Felz
  */
 
-module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) {
+module.exports = function messagesModule(app, db, path, express, mongoDBClient, io) {
 
     // setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
-    app.use(express.static('client/modules/msgs'));
+    app.use(express.static('client/modules/messages'));
 
     // handle main GET request and serve landing page
     app.get('/screen=:screenId', function (req, res) {
         // return landing page
-        res.sendFile(path.resolve('client/modules/msgs/msgs.html'));
+        res.sendFile(path.resolve('client/modules/messages/messages.html'));
     });
 
 
     // handle ajax request to serve appropriate messages using parameter routing
-    app.get('/api/msgs', function (req, res) {
+    app.get('/api/messages', function (req, res) {
 
         // exit if unauthenticated
         if (req.isUnauthenticated())
@@ -27,7 +27,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
 
         // get all messages from the database
         // retrieve matching messages from the database by screen id
-        db.collection('msgs')
+        db.collection('messages')
             .find()
             .toArray(function (err, docs) {
                 // if there is an error, display it
@@ -44,7 +44,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
 
 
     // search
-    app.get('/api/msgs/search', function (req, res) {
+    app.get('/api/messages/search', function (req, res) {
 
         // exit if unauthenticated
         if (req.isUnauthenticated())
@@ -70,7 +70,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
 
         // get all messages from the database
         // retrieve matching messages from the database by screen id
-        db.collection('msgs')
+        db.collection('messages')
             .find({
                 $where: queryString
             })
@@ -89,7 +89,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
 
 
     // handle ajax request to serve appropriate messages using parameter routing
-    app.post('/api/msgs/add', function (req, res) {
+    app.post('/api/messages/add', function (req, res) {
 
         // exit if unauthenticated
         if (req.isUnauthenticated())
@@ -100,7 +100,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
         console.log('Adding message : ' + req.body);
         // get all messages from the database
         // retrieve matching messages from the database
-        var result = db.collection('msgs')
+        var result = db.collection('messages')
                        .insertOne(req.body)
                        .then(function (result) {
 
@@ -118,7 +118,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
     });
 
     // handle ajax request to serve appropriate messages using parameter routing
-    app.post('/api/msgs/delete', function (req, res) {
+    app.post('/api/messages/delete', function (req, res) {
 
         // exit if unauthenticated
         if (req.isUnauthenticated())
@@ -129,7 +129,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
         console.log('Deleting message with id : '+  req.body._id);
         // get all messages from the database
         // retrieve matching messages from the database
-        var result = db.collection('msgs')
+        var result = db.collection('messages')
                        .removeOne({ _id: new mongoDBClient.ObjectID(req.body._id) })
                        .then(function (result) {
 
@@ -147,7 +147,7 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
     });
 
     // handle ajax request to serve appropriate messages using parameter routing
-    app.post('/api/msgs/update', function (req, res) {
+    app.post('/api/messages/update', function (req, res) {
 
         // exit if unauthenticated
         if (req.isUnauthenticated())
@@ -158,17 +158,17 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
         console.log('Updating message with id : '+  req.body._id);
 
         // retrieve matching messages from the database
-        var result = db.collection('msgs')
+        var result = db.collection('messages')
                        .updateOne({ _id: new mongoDBClient.ObjectID(req.body._id) },
                        {
                             name: req.body.name,
-                            textArr: req.body.textArr,
-                            imageArr: req.body.imageArr,
+                            textArray: req.body.textArray,
+                            imageArray: req.body.imageArray,
                             videoPath: req.body.videoPath,
-                            screensArr: req.body.screensArr,
+                            screensArray: req.body.screensArray,
                             templateUrl: req.body.templateUrl,
                             displayLength: req.body.displayLength,
-                            timeframes: req.body.timeframes
+                            timeFrames: req.body.timeFrames
                        },
                        { upsert: false })
                        .then(function (result) {
@@ -206,9 +206,9 @@ module.exports = function msgsModule(app, db, path, express, mongoDBClient, io) 
         // ------------------------
 
         // retrieve matching messages from the database by screen id
-        db.collection('msgs')
+        db.collection('messages')
             .find({
-                    screensArr: screenId,
+                    screensArray: screenId,
                     "timeframes.fromDate": {$lte: timestamp},
                     "timeframes.toDate": {$gte: timestamp},
                     "timeframes.fromTime": {$lte: date.getHours()},

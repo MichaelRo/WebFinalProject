@@ -12,7 +12,7 @@ ping -n 6 127.0.0.1 >nul
 @echo
 @echo Injecting data.json file to mongoDB using mongoimport process
 @echo
-mongoimport --db ads --collection msgs --file server/messages.json --jsonArray
+mongoimport --db ads --collection messages --file server/messages.json --jsonArray
 mongoimport --db ads --collection admins --file server/admins.json
 ping -n 6 127.0.0.1 >nul
 

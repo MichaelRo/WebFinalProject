@@ -4,7 +4,7 @@
  * Marom Felz
  */
 // setup admin controller
-angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal', '$filter',
+angular.module('adminApp').controller('messagesController', ['$scope', '$http', '$uibModal', '$filter',
     function ($scope, $http, $uibModal, $filter) {
 
         $scope.gridOptions = {
@@ -26,7 +26,7 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
             enableVerticalScrollbar: 2
         };
 
-        $scope.msgs = [];
+        $scope.messages = [];
 
         $scope.searchParams = {
             txtFieldsCount: 0,
@@ -43,14 +43,14 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
             // Get all the messages to display
             $http({
                 method: 'GET',
-                url: '/api/msgs'
-            }).then(function (msgs) {
+                url: '/api/messages'
+            }).then(function (messages) {
 
                 // update data
-                $scope.msgs = msgs.data;
-                // set msgs as the grid's data
-                $scope.gridOptions.data = $scope.msgs;
-                // apply current filter on msgs
+                $scope.messages = messages.data;
+                // set messages as the grid's data
+                $scope.gridOptions.data = $scope.messages;
+                // apply current filter on messages
                 $scope.filterMessages();
 
             }, function (err) {
@@ -63,13 +63,13 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
         /*
          *      Delete Message
          */
-        $scope.deleteMessage = function(msg) {
+        $scope.deleteMessage = function(message) {
 
             // Issue delete request to the server
             $http({
                 method: 'POST',
-                url: '/api/msgs/delete',
-                data: msg
+                url: '/api/messages/delete',
+                data: message
             }).then(function (result) {
 
                 console.log(result);
@@ -89,27 +89,27 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
         /*
          *      Update Message
          */
-        $scope.updateMessage = function(msg) {
+        $scope.updateMessage = function(message) {
 
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '../partials/msgDetails.html',
-                controller: 'updateMsgCtrl',
+                templateUrl: '../partials/messageDetails.html',
+                controller: 'updateMessageController',
                 size: 'lg',
                 resolve: {
                     initial: function() {
-                        return msg;
+                        return message;
                     }
                 }
             });
 
-            modalInstance.result.then(function(msg) {
+            modalInstance.result.then(function(message) {
 
                     // Issue update request to the server
                     $http({
                         method: 'POST',
-                        url: '/api/msgs/update',
-                        data: msg
+                        url: '/api/messages/update',
+                        data: message
                     }).then(function (result) {
 
                         console.log(result);
@@ -137,19 +137,19 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
 
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '../partials/msgDetails.html',
-                controller: 'addMsgCtrl',
+                templateUrl: '../partials/messageDetails.html',
+                controller: 'addMessageController',
                 size: 'lg',
                 resolve: {}
             });
 
-            modalInstance.result.then(function(msg) {
+            modalInstance.result.then(function(message) {
 
                     // Issue update request to the server
                     $http({
                         method: 'POST',
-                        url: '/api/msgs/add',
-                        data: msg
+                        url: '/api/messages/add',
+                        data: message
                     }).then(function (result) {
 
                         console.log(result);
@@ -172,7 +172,7 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
          *      Filter Messages
          */
         $scope.filterMessages = function() {
-            $scope.gridOptions.data = $filter('filter')($scope.msgs, $scope.searchText, undefined);
+            $scope.gridOptions.data = $filter('filter')($scope.messages, $scope.searchText, undefined);
         };
 
 
@@ -186,15 +186,15 @@ angular.module('adminApp').controller('msgsCtrl', ['$scope', '$http', '$uibModal
 
             $http({
                 method: 'GET',
-                url: '/api/msgs/search',
+                url: '/api/messages/search',
                 params: $scope.searchParams
-            }).then(function (msgs) {
+            }).then(function (messages) {
 
                 // update data
-                $scope.msgs = msgs.data;
-                // set msgs as the grid's data
-                $scope.gridOptions.data = $scope.msgs;
-                // apply current filter on msgs
+                $scope.messages = messages.data;
+                // set messages as the grid's data
+                $scope.gridOptions.data = $scope.messages;
+                // apply current filter on messages
                 $scope.filterMessages();
 
             }, function (err) {

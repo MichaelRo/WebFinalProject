@@ -4,7 +4,7 @@
  * Marom Felz
  */
 // setup admin controller
-angular.module('adminApp').controller('statsCtrl', ['$scope',
+angular.module('adminApp').controller('statsController', ['$scope',
     function ($scope) {
 
         // load statistics controls
