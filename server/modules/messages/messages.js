@@ -57,14 +57,14 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
         if (queryType === "min") {
             // prepare query string
-            queryString = "this.textArr.length >= " + req.query.txtFieldsCount + " && " +
-                          "this.imageArr.length >= " + req.query.imgFieldsCount + " && " +
+            queryString = "this.textArr.length >= " + req.query.textFieldsCount + " && " +
+                          "this.imageArr.length >= " + req.query.imageFieldsCount + " && " +
                           "this.displayLength >= " + req.query.minDisplayLength;
         }
         else if (queryType === "max") {
             // prepare query string
-            queryString = "this.textArr.length <= " + req.query.txtFieldsCount + " || " +
-                          "this.imageArr.length <= " + req.query.imgFieldsCount + " || " +
+            queryString = "this.textArr.length <= " + req.query.textFieldsCount + " || " +
+                          "this.imageArr.length <= " + req.query.imageFieldsCount + " || " +
                           "this.displayLength <= " + req.query.minDisplayLength;
         }
 
@@ -209,11 +209,11 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         db.collection('messages')
             .find({
                     screensArray: screenId,
-                    "timeframes.fromDate": {$lte: timestamp},
-                    "timeframes.toDate": {$gte: timestamp},
-                    "timeframes.fromTime": {$lte: date.getHours()},
-                    "timeframes.toTime": {$gte: date.getHours()},
-                    "timeframes.daysInWeek": date.getDay()
+                    "timeFrames.startDate": {$lte: timestamp},
+                    "timeFrames.endDate": {$gte: timestamp},
+                    "timeFrames.startTime": {$lte: date.getHours()},
+                    "timeFrames.endTime": {$gte: date.getHours()},
+                    "timeFrames.daysInWeek": date.getDay()
                 }
             )
             .toArray(function (err, docs) {

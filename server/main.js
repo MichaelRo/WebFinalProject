@@ -116,10 +116,10 @@ MongoClient.connect(mongoUrl, function(err, db) {
 
  for(var i=0; i<messages.length;++i)
  {
- for(var j=0; j<messages[i].timeframes.length;++j)
+ for(var j=0; j<messages[i].timeFrames.length;++j)
  {
- messages[i].timeframes[j].toDate = Date.parse(messages[i].timeframes[j].toDate)/1000;
- messages[i].timeframes[j].fromDate = Date.parse(messages[i].timeframes[j].fromDate)/1000;
+ messages[i].timeFrames[j].toDate = Date.parse(messages[i].timeFrames[j].endDate)/1000;
+ messages[i].timeFrames[j].startDate = Date.parse(messages[i].timeFrames[j].endDate)/1000;
  }
  }
  db.collection("messages").insertMany(messages);

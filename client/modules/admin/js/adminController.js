@@ -3,10 +3,10 @@
  * Itay Desalto
  * Marom Felz
  */
+
 // setup admin controller
 angular.module('adminApp').controller('adminController', ['$scope', '$state', '$location', '$window', 'AuthService',
     function ($scope, $state, $location, $window, AuthService) {
-
         /*
          *      Handles transition between views
          */
@@ -20,11 +20,10 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
             $state.go('dashboard.messages');
         }
 
-
         /*
          *      Setup tabs
          */
-        $scope.adminTabs   = [
+        $scope.adminTabs = [
             {
                 heading: 'Messages',
                 route:   'dashboard.messages'
@@ -42,8 +41,7 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
         /*
          *      IsLoggedIn
          */
-        $scope.isLoggedIn = function()
-        {
+        $scope.isLoggedIn = function() {
             return AuthService.isLoggedIn();
         }
 
@@ -51,7 +49,6 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
          *      Login
          */
         $scope.login = function () {
-
             // initial values
             $scope.error = false;
             $scope.disabled = true;
@@ -69,7 +66,7 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
                 // handle error
                 .catch(function () {
                     $scope.error = true;
-                    $scope.errorMessage = "Invalid username and/or password";
+                    $scope.errorMessage = "Invalid username or password";
                     $scope.disabled = false;
                     $scope.loginForm = {};
                 });

@@ -37,7 +37,7 @@ module.exports = function statsModule(app, db, path, express) {
                               .count(
                                 {
                                 "templateUrl": template,
-                                "timeframes.daysInWeek": innerIndex
+                                "timeFrames.daysInWeek": innerIndex
                                 }
                             ).then(function (count) {
 
@@ -95,7 +95,7 @@ module.exports = function statsModule(app, db, path, express) {
             // find the messages displayed in the given day and group them by display length
             db.collection('messages').aggregate(
                 [
-                    { $match: { 'timeframes.daysInWeek': index } },
+                    { $match: { 'timeFrames.daysInWeek': index } },
                     { $group: { "_id": "$displayLength", "count": { $sum: 1 } } }
                 ]
             ).toArray(function(err, result) {

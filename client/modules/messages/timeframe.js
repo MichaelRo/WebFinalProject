@@ -7,10 +7,10 @@
 var app = app || {};
 
 
-app.Timeframe = function (fromDate, toDate, daysInWeek, fromTime, toTime) {
-    this.startDate = fromDate;
-    this.endDate= toDate;
+app.TimeFrame = function (startDate, endDate, daysInWeek, startTime, endTime) {
+    this.startDate = startDate;
+    this.endDate= endDate;
     this.daysInWeek= daysInWeek;
-    this.startTime = fromTime;
-    this.endTime = toTime;
+    this.startTime = startTime;
+    this.endTime = endTime;
 }

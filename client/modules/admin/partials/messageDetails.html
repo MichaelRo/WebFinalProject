@@ -53,7 +53,7 @@
 
         <div>
             <span class="col-md-2">
-                Timeframes:
+                TimeFrames:
             </span>
             <aside>
                 <a href="" ng-click="addTimeFrame()" class="btn btn-success btn-xs command-button">
@@ -61,33 +61,33 @@
                 </a>
             </aside>
             <div class="col-md-10">
-                <div class="panel" ng-repeat="timeframe in message.timeFrames" >
+                <div class="panel" ng-repeat="timeFrame in message.timeFrames" >
                     <a href=""
-                       ng-click="removeTimeframe(timeframe)"
+                       ng-click="removeTimeFrame(timeFrame)"
                        class="btn btn-danger btn-xs command-button"
                        ng-disabled="message.timeFrames.length <= 1">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
                     <div>
                         <span class="col-md-2">From date:</span>
-                        <input type="date" ng-model="timeframe.fromDate" class="date-element"/>
+                        <input type="date" ng-model="timeFrame.startDate" class="date-element"/>
                     </div>
                     <div>
                         <span class="col-md-2">From time:</span>
-                        <input type="number" min="1" max="23" step="1" ng-model="timeframe.fromTime"/>
+                        <input type="number" min="1" max="23" step="1" ng-model="timeFrame.startTime"/>
                     </div>
                     <div>
                         <span class="col-md-2">To date:</span>
-                        <input type="date" ng-model="timeframe.toDate" class="date-element"/>
+                        <input type="date" ng-model="timeFrame.endDate" class="date-element"/>
                     </div>
                     <div>
                         <span class="col-md-2">To time:</span>
-                        <input type="number" min="1" max="23" step="1" ng-model="timeframe.toTime"/>
+                        <input type="number" min="1" max="23" step="1" ng-model="timeFrame.endTime"/>
                     </div>
                     <div>
                         <span class="col-md-2">Days in week:</span>
                         <textarea
-                                  ng-model="timeframe.daysInWeek"
+                                  ng-model="timeFrame.daysInWeek"
                                   ng-list="&#10;"
                                   ng-trim="false"></textarea>
                     </div>
