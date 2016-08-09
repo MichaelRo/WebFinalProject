@@ -38,20 +38,19 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
          *      Get Messages
          */
         $scope.getMessages = function() {
-            // Get all the messages to display
             $http({
                 method: 'GET',
                 url: '/api/messages'
             }).then(function (messages) {
-                // update data
                 $scope.messages = messages.data;
+
                 // set messages as the grid's data
                 $scope.gridOptions.data = $scope.messages;
+
                 // apply current filter on messages
                 $scope.filterMessages();
 
             }, function (err) {
-                // log
                 console.log(err);
             });
         };
@@ -60,7 +59,6 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
          *      Delete Message
          */
         $scope.deleteMessage = function(message) {
-            // Issue delete request to the server
             $http({
                 method: 'POST',
                 url: '/api/messages/delete',
@@ -68,11 +66,10 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             }).then(function (result) {
                 console.log(result);
 
-                // if deletion was successful
+                // In case the deletion was successful
                 if (result && result.data && result.data.deleted)
                     $scope.getMessages();
             }, function (err) {
-                // log
                 console.log(err);
             });
         };
@@ -94,7 +91,6 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
 
             modalInstance.result.then(function(message) {
-                    // Issue update request to the server
                     $http({
                         method: 'POST',
                         url: '/api/messages/update',
@@ -107,7 +103,6 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                             $scope.getMessages();
 
                     }, function (err) {
-                        // log
                         console.log(err);
                     });
                 },
@@ -129,13 +124,11 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
 
             modalInstance.result.then(function(message) {
-                    // Issue update request to the server
                     $http({
                         method: 'POST',
                         url: '/api/messages/add',
                         data: message
                     }).then(function (result) {
-
                         console.log(result);
 
                         // if update was successful
@@ -143,7 +136,6 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                             $scope.getMessages();
 
                     }, function (err) {
-                        // log
                         console.log(err);
                     });
                 },
@@ -171,14 +163,14 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                 url: '/api/messages/search',
                 params: $scope.searchParams
             }).then(function (messages) {
-                // update data
                 $scope.messages = messages.data;
+
                 // set messages as the grid's data
                 $scope.gridOptions.data = $scope.messages;
+
                 // apply current filter on messages
                 $scope.filterMessages();
             }, function (err) {
-                // log
                 console.log(err);
             });
         };
