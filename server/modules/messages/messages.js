@@ -209,11 +209,11 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         db.collection('messages')
             .find({
                     screensArray: screenId,
-                    "timeframes.fromDate": {$lte: timestamp},
-                    "timeframes.toDate": {$gte: timestamp},
-                    "timeframes.fromTime": {$lte: date.getHours()},
-                    "timeframes.toTime": {$gte: date.getHours()},
-                    "timeframes.daysInWeek": date.getDay()
+                    "timeFrames.startDate": {$lte: timestamp},
+                    "timeFrames.endDate": {$gte: timestamp},
+                    "timeFrames.startTime": {$lte: date.getHours()},
+                    "timeFrames.endTime": {$gte: date.getHours()},
+                    "timeFrames.daysInWeek": date.getDay()
                 }
             )
             .toArray(function (err, docs) {

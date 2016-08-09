@@ -39,7 +39,7 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
         };
 
         /*
-         *      Adds a new timeframe
+         *      Adds a new timeFrame
          */
         $scope.addTimeFrame = function()
         {
@@ -53,7 +53,7 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
         };
 
         /*
-         *      remove timeframe
+         *      remove timeFrame
          */
         $scope.removeTimeFrame = function(timeFrame) {
             // delete only when there is at least one timeFrame left
@@ -82,14 +82,14 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
                 timeFrames: []
             };
 
-            // parse timeframes from date objects to timestamps
-            messageWithDates.timeFrames.forEach(function(timeframe, index, timeframes) {
+            // parse timeFrames from date objects to timestamps
+            messageWithDates.timeFrames.forEach(function(timeFrame, index, timeFrames) {
                 newMessage.timeFrames.push({
-                    startDate: parseInt(timeframe.startDate.getTime() / 1000),
-                    startTime: timeframe.startTime,
-                    endDate: parseInt(timeframe.endDate.getTime() / 1000),
-                    endTime: timeframe.endTime,
-                    daysInWeek: _.map( timeframe.daysInWeek, function(day){ return parseInt(day); })
+                    startDate: parseInt(timeFrame.startDate.getTime() / 1000),
+                    startTime: timeFrame.startTime,
+                    endDate: parseInt(timeFrame.endDate.getTime() / 1000),
+                    endTime: timeFrame.endTime,
+                    daysInWeek: _.map(timeFrame.daysInWeek, function(day){ return parseInt(day); })
                 });
             });
 

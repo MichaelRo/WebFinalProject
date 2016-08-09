@@ -3,19 +3,16 @@
  * Itay Desalto
  * Marom Felz
  */
+
 angular.module('adminApp').controller('updateMessageController', ['$scope', '$uibModalInstance', 'initial',
     function ($scope, $uibModalInstance, initial) {
-
-        // Define a new variable to hold the value of the new message
         $scope.message = cloneMessageToMessageWithDates(initial);
 
         //
         // Calls when modal is being closed by the OK button
         //
         $scope.ok = function() {
-
-            var editedMessage = cloneMessageToMessageWithTimestamps($scope.message);
-            $uibModalInstance.close(editedMessage);
+            $uibModalInstance.close(cloneMessageToMessageWithTimestamps($scope.message));
         };
 
         //
@@ -25,12 +22,10 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
             $uibModalInstance.dismiss('cancel');
         };
 
-
         /*
-         *      Adds a new timeframe
+         *      Adds a new timeFrame
          */
-        $scope.addTimeFrame = function()
-        {
+        $scope.addTimeFrame = function() {
             $scope.message.timeFrames.push({
                 startDate: new Date(),
                 endDate: new Date(),
@@ -42,24 +37,22 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
 
 
         /*
-         *      remove timeframe
+         *      remove timeFrame
          */
-        $scope.removeTimeframe = function(timeframe){
+        $scope.removeTimeFrame = function(timeFrame) {
+            // delete only if at least one timeFrame left
+            if ($scope.message.timeFrames.length > 1) {
+                // find index of timeFrame to delete
+                var index = $scope.message.timeFrames.indexOf(timeFrame);
 
-            // delete only when there is atleast one timeframe left
-            if ($scope.message.timeFrames.length > 1)
-            {
-                // find index of timeframe to delete
-                var index = $scope.message.timeFrames.indexOf(timeframe);
-                // if timeframe found
+                // if timeFrame found
                 if (index > -1) {
                     $scope.message.timeFrames.splice(index, 1);
                 }
             }
         }
 
-        function cloneMessageToMessageWithDates(messageWithTimestamps)
-        {
+        function cloneMessageToMessageWithDates(messageWithTimestamps) {
             // Define a new variable to hold the value of the new bid
             var newMessage = {
                 _id: messageWithTimestamps._id,
@@ -73,14 +66,14 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
                 timeFrames: []
             };
 
-            // parse timeframes from timestamps to date objects
-            messageWithTimestamps.timeFrames.forEach(function(timeframe, index, timeframes) {
+            // parse timeFrames from timestamps to date objects
+            messageWithTimestamps.timeFrames.forEach(function(timeFrame, index, timeFrames) {
                 newMessage.timeFrames.push({
-                        startDate: new Date(timeframe.startDate*1000),
-                        startTime: timeframe.startTime,
-                        endDate: new Date(timeframe.endDate*1000),
-                        endTime: timeframe.endTime,
-                        daysInWeek: timeframe.daysInWeek
+                    startDate: new Date(timeFrame.startDate * 1000),
+                    startTime: timeFrame.startTime,
+                    endDate: new Date(timeFrame.endDate * 1000),
+                    endTime: timeFrame.endTime,
+                    daysInWeek: timeFrame.daysInWeek
                 });
             });
 
@@ -89,8 +82,7 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
 
 
 
-        function cloneMessageToMessageWithTimestamps(messageWithDates)
-        {
+        function cloneMessageToMessageWithTimestamps(messageWithDates) {
             // Define a new variable to hold the value of the new bid
             var newMessage = {
                 _id: messageWithDates._id,
@@ -104,18 +96,17 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
                 timeFrames: []
             };
 
-            // parse timeframes from date objects to timestamps
-            messageWithDates.timeFrames.forEach(function(timeframe, index, timeframes) {
+            // parse timeFrames from date objects to timestamps
+            messageWithDates.timeFrames.forEach(function(timeFrame, index, timeFrames) {
                 newMessage.timeFrames.push({
-                    startDate: parseInt(timeframe.startDate.getTime()/1000),
-                    startTime: timeframe.startTime,
-                    endDate: parseInt(timeframe.endDate.getTime()/1000),
-                    endTime: timeframe.endTime,
-                    daysInWeek: _.map( timeframe.daysInWeek, function(day){ return parseInt(day); })
+                    startDate: parseInt(timeFrame.startDate.getTime() / 1000),
+                    startTime: timeFrame.startTime,
+                    endDate: parseInt(timeFrame.endDate.getTime() / 1000),
+                    endTime: timeFrame.endTime,
+                    daysInWeek: _.map(timeFrame.daysInWeek, function(day){ return parseInt(day); })
                 });
             });
 
             return newMessage;
         }
-
     }]);

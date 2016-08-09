@@ -12,10 +12,10 @@ app.Message = function (name) {
     this.textArr = [];
     this.imageArr = [];
     this.videoPath = "";
-    this.screensArr = [];
+    this.screensArray = [];
     this.templateUrl = "";
     this.displayLength = 5; // Default length of 60 seconds
-    this.timeframes = [];
+    this.timeFrames = [];
 }
 
 
@@ -34,7 +34,7 @@ app.Message.prototype.addText = function(text) {
     }
 }
 
-app.Message.prototype.addTimeFrame = function(fromDate, toDate, daysInWeek, fromTime, toTime)
+app.Message.prototype.addTimeFrame = function(startDate, endDate, daysInWeek, startTime, endTime)
 {
-    this.timeframes[this.timeframes.length] = new app.Timeframe(fromDate, toDate, daysInWeek, fromTime, toTime);
+    this.timeFrames[this.timeFrames.length] = new app.TimeFrame(startDate, endDate, daysInWeek, startTime, endTime);
 }

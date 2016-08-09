@@ -34,8 +34,7 @@ function wireup()
 
 /*
  *
- *  Extracts relevant messages to display from general messages pool by
- *  timeframes.
+ *  Extracts relevant messages to display from general messages pool by timeFrames.
  *
  */
 function getMessages()
