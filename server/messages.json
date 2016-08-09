@@ -10,7 +10,7 @@
   "screensArray": [
     1
   ],
-  "templateUrl" : "templates/A.css",
+  "templateUrl" : "templates/Template1.css",
     "displayLength" : 5,
   "timeFrames": [
     {
@@ -33,7 +33,7 @@
     2,
     3
   ],
-  "templateUrl" : "templates/C.css",
+  "templateUrl" : "templates/Template3.css",
   "displayLength" : 5,
   "timeFrames": [
     {
@@ -75,7 +75,7 @@
     1,
     3
   ],
-  "templateUrl" : "templates/B.css",
+  "templateUrl" : "templates/Template2.css",
   "displayLength" : 10,
   "timeFrames": [
     {
@@ -107,7 +107,7 @@
     1,
     2
   ],
-  "templateUrl" : "templates/A.css",
+  "templateUrl" : "templates/Template1.css",
   "displayLength" : 5,
   "timeFrames": [
     {
@@ -149,7 +149,7 @@
   "screensArray": [
     3
   ],
-  "templateUrl" : "templates/B.css",
+  "templateUrl" : "templates/Template2.css",
   "displayLength" : 5,
   "timeFrames": [
     {
