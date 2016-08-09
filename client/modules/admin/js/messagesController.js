@@ -3,9 +3,11 @@
  * Itay Desalto
  * Marom Felz
  */
+
 // setup admin controller
 angular.module('adminApp').controller('messagesController', ['$scope', '$http', '$uibModal', '$filter',
     function ($scope, $http, $uibModal, $filter) {
+        $scope.messages = [];
 
         $scope.gridOptions = {
             enableSorting: true,
@@ -26,26 +28,21 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             enableVerticalScrollbar: 2
         };
 
-        $scope.messages = [];
-
         $scope.searchParams = {
-            txtFieldsCount: 0,
-            imgFieldsCount: 0,
+            textFieldsCount: 0,
+            imageFieldsCount: 0,
             minDisplayLength: 0
         };
-
 
         /*
          *      Get Messages
          */
-        $scope.getMessages = function()
-        {
+        $scope.getMessages = function() {
             // Get all the messages to display
             $http({
                 method: 'GET',
                 url: '/api/messages'
             }).then(function (messages) {
-
                 // update data
                 $scope.messages = messages.data;
                 // set messages as the grid's data
@@ -59,38 +56,31 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
         };
 
-
         /*
          *      Delete Message
          */
         $scope.deleteMessage = function(message) {
-
             // Issue delete request to the server
             $http({
                 method: 'POST',
                 url: '/api/messages/delete',
                 data: message
             }).then(function (result) {
-
                 console.log(result);
 
                 // if deletion was successful
                 if (result && result.data && result.data.deleted)
                     $scope.getMessages();
-
             }, function (err) {
                 // log
                 console.log(err);
             });
         };
 
-
-
         /*
          *      Update Message
          */
         $scope.updateMessage = function(message) {
-
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: '../partials/messageDetails.html',
@@ -104,14 +94,12 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
 
             modalInstance.result.then(function(message) {
-
                     // Issue update request to the server
                     $http({
                         method: 'POST',
                         url: '/api/messages/update',
                         data: message
                     }).then(function (result) {
-
                         console.log(result);
 
                         // if update was successful
@@ -126,15 +114,12 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                 function() {
                     console.log('Modal dismissed at: ' + new Date());
                 });
-
         };
-
 
         /*
          *      Add Message
          */
         $scope.addMessage = function() {
-
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: '../partials/messageDetails.html',
@@ -144,7 +129,6 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
 
             modalInstance.result.then(function(message) {
-
                     // Issue update request to the server
                     $http({
                         method: 'POST',
@@ -175,12 +159,10 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             $scope.gridOptions.data = $filter('filter')($scope.messages, $scope.searchText, undefined);
         };
 
-
         /*
          *     Search Messages
          */
         $scope.searchMessages = function(queryType) {
-
             // set query type
             $scope.searchParams.queryType = queryType;
 
@@ -189,21 +171,17 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                 url: '/api/messages/search',
                 params: $scope.searchParams
             }).then(function (messages) {
-
                 // update data
                 $scope.messages = messages.data;
                 // set messages as the grid's data
                 $scope.gridOptions.data = $scope.messages;
                 // apply current filter on messages
                 $scope.filterMessages();
-
             }, function (err) {
                 // log
                 console.log(err);
             });
-
         };
-
 
         /*
          *      Yoda Speak
@@ -217,16 +195,11 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                     'X-Mashape-Key': 'BaiiIKpF50mshxlhBM5NyhdzJkuqp17njAvjsnHd54ouD9mL2x'
                 }
             }).then(function (yodaSentence) {
-
                 $scope.yodaSentence = yodaSentence.data;
-
             }, function (err) {
-                // log
                 console.log(err);
             });
         }
 
-        // get messages
         $scope.getMessages();
-
     }]);

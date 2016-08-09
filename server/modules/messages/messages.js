@@ -57,14 +57,14 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
         if (queryType === "min") {
             // prepare query string
-            queryString = "this.textArr.length >= " + req.query.txtFieldsCount + " && " +
-                          "this.imageArr.length >= " + req.query.imgFieldsCount + " && " +
+            queryString = "this.textArr.length >= " + req.query.textFieldsCount + " && " +
+                          "this.imageArr.length >= " + req.query.imageFieldsCount + " && " +
                           "this.displayLength >= " + req.query.minDisplayLength;
         }
         else if (queryType === "max") {
             // prepare query string
-            queryString = "this.textArr.length <= " + req.query.txtFieldsCount + " || " +
-                          "this.imageArr.length <= " + req.query.imgFieldsCount + " || " +
+            queryString = "this.textArr.length <= " + req.query.textFieldsCount + " || " +
+                          "this.imageArr.length <= " + req.query.imageFieldsCount + " || " +
                           "this.displayLength <= " + req.query.minDisplayLength;
         }
 
