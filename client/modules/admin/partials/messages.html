@@ -1,5 +1,19 @@
 <div class="container-fluid">
     <div>
+        <h5>Pokémon Type Machine:</h5>
+        <div>
+            Name: <input ng-model="pokemonName">
+            <button class="btn btn-primary" type="button" ng-click="getPokemonTypes()">Send</button>
+            <br>
+            <span>Types: </span>
+            <div class="pokemon-type" ng-repeat="pokemonType in pokemonTypes" ng-class=pokemonType.type.name>
+                {{pokemonType.type.name}}
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
+    <div>
         <h3>Manage the messages in the system
             <aside>
                 <a href="" ng-click="addMessage()" class="btn btn-success btn-md command-button align-right">
@@ -40,14 +54,6 @@
                 <span>seconds </span>
                 <button class="btn btn-primary" type="button" ng-click="searchMessages('max')">Search</button>
             </div>
-        </div>
-        <div>
-            <h5>Yoda speak:</h5>
-            <input type="text"
-                   class="form-control"
-                   placeholder="sentence to yodalize ..."
-                   ng-model="yodaSentence">
-            <button class="btn btn-primary" type="button" ng-click="yodalize()">Yodalize</button>
         </div>
     </div>
     <div class="row space">

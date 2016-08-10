@@ -175,19 +175,14 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
         };
 
-        /*
-         *      Yoda Speak
-         */
-        $scope.yodalize = function() {
+        $scope.getPokemonTypes = function() {
+            $scope.pokemonTypes = {};
+
             $http({
                 method: 'GET',
-                url: 'https://yoda.p.mashape.com/yoda',
-                params: {sentence: $scope.yodaSentence },
-                headers: {
-                    'X-Mashape-Key': 'BaiiIKpF50mshxlhBM5NyhdzJkuqp17njAvjsnHd54ouD9mL2x'
-                }
-            }).then(function (yodaSentence) {
-                $scope.yodaSentence = yodaSentence.data;
+                url: ('http://pokeapi.co/api/v2/pokemon/' + $scope.pokemonName + '/')
+            }).then(function (response) {
+                $scope.pokemonTypes = response.data.types;
             }, function (err) {
                 console.log(err);
             });

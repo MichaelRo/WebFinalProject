@@ -64,3 +64,7 @@ textarea {
     width: 30px;
     height: 30px;
 }
+
+.align-right {
+    float: right;
+}
