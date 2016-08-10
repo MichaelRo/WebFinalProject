@@ -9,7 +9,7 @@
     var barHeight = 20;
 
     var color = d3.scale.ordinal()
-        .range(["steelblue", "#ccc"]);
+        .range(["red", "white"]);
 
     var duration = 750,
         delay = 25;
