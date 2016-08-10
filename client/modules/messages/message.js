@@ -3,14 +3,13 @@
  * Itay Desalto
  * Marom Felz
  */
-// global namespace
-var app = app || {};
 
+var app = app || {};
 
 app.Message = function (name) {
     this.name = name;
-    this.textArr = [];
-    this.imageArr = [];
+    this.textArray = [];
+    this.imageArrary = [];
     this.videoPath = "";
     this.screensArray = [];
     this.templateUrl = "";
@@ -18,23 +17,18 @@ app.Message = function (name) {
     this.timeFrames = [];
 }
 
-
 app.Message.prototype.addImage = function(imagePath) {
-    if (this.imageArr.length <= 5)
-    {
-        this.imageArr[this.imageArr.length] = imagePath;
+    if (this.imageArrary.length <= 5) {
+        this.imageArrary[this.imageArrary.length] = imagePath;
     }
 }
-
 
 app.Message.prototype.addText = function(text) {
-    if (this.textArr.length <= 10)
-    {
-        this.textArr[this.textArr.length] = text;
+    if (this.textArray.length <= 10) {
+        this.textArray[this.textArray.length] = text;
     }
 }
 
-app.Message.prototype.addTimeFrame = function(startDate, endDate, daysInWeek, startTime, endTime)
-{
+app.Message.prototype.addTimeFrame = function(startDate, endDate, daysInWeek, startTime, endTime) {
     this.timeFrames[this.timeFrames.length] = new app.TimeFrame(startDate, endDate, daysInWeek, startTime, endTime);
 }

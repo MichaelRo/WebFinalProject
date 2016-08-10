@@ -4,20 +4,16 @@
  * Marom Felz
  */
 module.exports = function statsModule(app, db, path, express) {
-
     // handle ajax request to serve appropriate messages using parameter routing
     app.get('/api/stats/csv', function (req, res) {
-
-        // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
         // build csv with statistical data
         var data = "";
         var daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var amountOfRecrods = 0;
+        var recordsAmount = 0;
         var counter = 0;
 
         // get the distinct messages templates
@@ -25,23 +21,18 @@ module.exports = function statsModule(app, db, path, express) {
             .distinct('templateUrl')
             .then(function (templates) {
                     // update the amount of records we need to write
-                    amountOfRecrods = daysInWeek.length * templates.length;
-                    // iterate the distinct templates
-                    templates.forEach(function (template, outterIndex, templates) {
-                        // for every templates iterate the days in week
-                        daysInWeek.forEach(function (day, innerIndex, days) {
+                    recordsAmount = daysInWeek.length * templates.length;
 
+                    templates.forEach(function (template, outterIndex, templates) {
+                        daysInWeek.forEach(function (day, innerIndex, days) {
                             // count the messages in the database
                             // with the given template and given name
-                            db.collection('messages')
-                              .count(
+                            db.collection('messages').count(
                                 {
                                 "templateUrl": template,
                                 "timeFrames.daysInWeek": innerIndex
                                 }
                             ).then(function (count) {
-
-                                // write data
                                 data += template.replace('templates/', 'Template ')
                                         .replace('.css', '')
                                     + "-" + day + ","
@@ -53,38 +44,29 @@ module.exports = function statsModule(app, db, path, express) {
 
                                 // return answer if this is the last day
                                 // of the last template
-                                if (counter === amountOfRecrods) {
+                                if (counter === recordsAmount) {
                                     // return data
                                     res.attachment('data.csv');
                                     res.setHeader('Content-Type', 'text/csv');
                                     res.end(data);
                                 }
                             }, function (error) {
-                                // Common error handling
                                 console.log(error);
                             })
-
                         });
                     });
-                }
-                , function (error) {
-                    // Common error handling
+                }, function (error) {
                     console.log(error);
                 });
     });
 
     app.get('/api/stats/json', function (req, res) {
-
-        // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
-        // define days in week array
         var daysInWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var rootNode =
-        {
+        var rootNode = {
             name: 'flare',
             children: []
         };
@@ -102,12 +84,13 @@ module.exports = function statsModule(app, db, path, express) {
                 // debug outputs
                 console.log(day);
                 console.log(result);
+
                 // for the given day, define a list of 'groups' objects to be pushed
                 // as the children of the current day object
                 var groups = [];
+
                 // create the hierarchical object for each group
                 result.forEach(function(group){
-                    // add object to group
                     groups.push({
                        name: group._id,
                        children: [],
@@ -123,11 +106,9 @@ module.exports = function statsModule(app, db, path, express) {
                 });
 
                 // if this is the last iteration
-                if (++counter === days.length)
-                {
+                if (++counter === days.length) {
                     // return the data
-                    res.status(200)
-                       .json(rootNode);
+                    res.status(200).json(rootNode);
                 }
             });
         });

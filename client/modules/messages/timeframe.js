@@ -3,9 +3,8 @@
  * Itay Desalto
  * Marom Felz
  */
-// global namespace
-var app = app || {};
 
+var app = app || {};
 
 app.TimeFrame = function (startDate, endDate, daysInWeek, startTime, endTime) {
     this.startDate = startDate;

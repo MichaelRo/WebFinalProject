@@ -4,7 +4,6 @@
  * Marom Felz
  */
 module.exports = function adminModule(app, db, path, express, passport) {
-
     var LocalStrategy = require('passport-local').Strategy;
 
     // setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
@@ -12,22 +11,16 @@ module.exports = function adminModule(app, db, path, express, passport) {
 
     // handle main GET request and serve landing page
     app.get('/admin', function (req, res) {
-        // logout
-        //req.logout();
-        // return admin landing page
         res.sendFile(path.resolve('client/modules/admin/admin.html'));
     });
 
     // setup user authentication
     passport.use(new LocalStrategy(function(username, password, done) {
-
         db.collection('admins')
             .find({
                 'username': username
-            })
-            .limit(1)
-            .next(function(err, user)
-            {
+            }).limit(1)
+            .next(function(err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -44,15 +37,9 @@ module.exports = function adminModule(app, db, path, express, passport) {
             });
     }));
 
+    passport.serializeUser(function(user, done) { done(null, user); });
 
-     passport.serializeUser(function(user, done) {
-        done(null, user);
-     });
-
-     passport.deserializeUser(function(user, done) {
-        done(null, user);
-     });
-
+    passport.deserializeUser(function(user, done) { done(null, user); });
 
     app.post('/api/login',
         passport.authenticate('local', {
@@ -69,12 +56,10 @@ module.exports = function adminModule(app, db, path, express, passport) {
     });
 
     app.get('/api/loginFailure', function(req, res, next) {
-        // failed login
         res.status(500).json({err: 'Could not log in admin'});
     });
 
     app.get('/api/loginSuccess', function(req, res, next) {
-        // succesful login
         res.status(200).json({status: 'Login successful!'});
     });
 }

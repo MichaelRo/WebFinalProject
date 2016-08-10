@@ -5,23 +5,18 @@
  */
 
 module.exports = function messagesModule(app, db, path, express, mongoDBClient, io) {
-
     // setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
     app.use(express.static('client/modules/messages'));
 
     // handle main GET request and serve landing page
     app.get('/screen=:screenId', function (req, res) {
-        // return landing page
         res.sendFile(path.resolve('client/modules/messages/messages.html'));
     });
 
-
     // handle ajax request to serve appropriate messages using parameter routing
     app.get('/api/messages', function (req, res) {
-
         // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
@@ -30,7 +25,6 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         db.collection('messages')
             .find()
             .toArray(function (err, docs) {
-                // if there is an error, display it
                 if (err) {
                     console.log('Unable to fetch messages from db. Error:', err);
                 }
@@ -42,13 +36,10 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
     });
 
-
     // search
     app.get('/api/messages/search', function (req, res) {
-
         // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
@@ -56,13 +47,11 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         var queryString = "";
 
         if (queryType === "min") {
-            // prepare query string
             queryString = "this.textArr.length >= " + req.query.textFieldsCount + " && " +
                           "this.imageArr.length >= " + req.query.imageFieldsCount + " && " +
                           "this.displayLength >= " + req.query.minDisplayLength;
         }
         else if (queryType === "max") {
-            // prepare query string
             queryString = "this.textArr.length <= " + req.query.textFieldsCount + " || " +
                           "this.imageArr.length <= " + req.query.imageFieldsCount + " || " +
                           "this.displayLength <= " + req.query.minDisplayLength;
@@ -84,16 +73,11 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                     res.json(docs);
                 }
             });
-
     });
-
 
     // handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/add', function (req, res) {
-
-        // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
@@ -103,26 +87,21 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         var result = db.collection('messages')
                        .insertOne(req.body)
                        .then(function (result) {
+                            // notify clients they need to update
+                            sendRequeryNotification();
 
-                           // notify clients they need to update
-                           sendRequeryNotification();
-                            // success
                             res.status(200).json({inserted: result.insertedCount > 0});
 
                        }, function (error) {
-                            // Common error handling
                             console.log(error);
-                            // result
+
                             res.status(404).json({inserted: false});
                        });
     });
 
     // handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/delete', function (req, res) {
-
-        // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
@@ -132,26 +111,21 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         var result = db.collection('messages')
                        .removeOne({ _id: new mongoDBClient.ObjectID(req.body._id) })
                        .then(function (result) {
+                            // notify clients they need to update
+                            sendRequeryNotification();
 
-                           // notify clients they need to update
-                           sendRequeryNotification();
-                           // success
-                           res.status(200).json({deleted: result.deletedCount > 0});
+                            res.status(200).json({deleted: result.deletedCount > 0});
 
                        }, function (error) {
-                            // Common error handling
                             console.log(error);
-                           // result
-                           res.status(404).json({deleted: false});
+
+                            res.status(404).json({deleted: false});
                         });
     });
 
     // handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/update', function (req, res) {
-
-        // exit if unauthenticated
-        if (req.isUnauthenticated())
-        {
+        if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
@@ -172,25 +146,21 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                        },
                        { upsert: false })
                        .then(function (result) {
+                            // notify clients they need to update
+                            sendRequeryNotification();
 
-                           // notify clients they need to update
-                           sendRequeryNotification();
                             // success
                             res.status(200).json({updated: result.modifiedCount > 0});
 
                         }, function (error) {
-
-                            // Common error handling
                             console.log(error);
-                            // result
-                            res.status(404).json({updated: false});
 
+                            res.status(404).json({updated: false});
                         });
     });
 
     // handle ajax request to serve appropriate messages using parameter routing
     app.get('/api/screen=:screenId', function (req, res) {
-
         // fetch screen id
         var screenId = parseInt(req.params.screenId);
 
@@ -215,17 +185,13 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                     "timeFrames.endTime": {$gte: date.getHours()},
                     "timeFrames.daysInWeek": date.getDay()
                 }
-            )
-            .toArray(function (err, docs) {
-                // if there is an error, display it
+            ).toArray(function (err, docs) {
                 if (err) {
                     console.log('Unable to fetch messages from db. Error:', err);
                 }
                 else {
-
-                    // log
                     console.log('Fetching messages for screen %d. fetched total of %d messages.',
-                        req.params.screenId, docs.length);
+                                req.params.screenId, docs.length);
 
                     // return messages
                     res.json(docs);
@@ -233,9 +199,7 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
             });
     })
 
-    function sendRequeryNotification()
-    {
-        // indicate to clients that requery is needed
+    function sendRequeryNotification() {
         io.sockets.emit('requeryNeeded', {});
     }
 }
