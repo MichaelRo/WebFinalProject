@@ -68,3 +68,5 @@ textarea {
 .align-right {
     float: right;
 }
+
+.container {float: left;}

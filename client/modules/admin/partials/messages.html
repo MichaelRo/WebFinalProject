@@ -1,13 +1,35 @@
 <div class="container-fluid">
     <div>
-        <h5>Pokémon Type Machine:</h5>
-        <div>
-            Name: <input ng-model="pokemonName">
-            <button class="btn btn-primary" type="button" ng-click="getPokemonTypes()">Send</button>
-            <br>
-            <span>Types: </span>
-            <div class="pokemon-type" ng-repeat="pokemonType in pokemonTypes" ng-class=pokemonType.type.name>
-                {{pokemonType.type.name}}
+        <h5>Pokédex</h5>
+            <div>
+                Name: <input ng-model="pokemonName">
+                <button class="btn btn-primary" type="button" ng-click="getPokemon()">Send</button>
+            </div>
+            <div>
+                <div>
+                    <img ng-src="{{pokemonIconURL}}">
+                    <div ng-style="showPokemonIcon()"></div>
+                </div>
+                <div>
+                    <div>
+                        <span>Base experience:</span>
+                        <span>{{pokemon.base_experience}} xp</span>
+                    </div>
+                    <div>
+                        <span>Height:</span>
+                        <span>{{pokemon.height / 10}} m</span>
+                    </div>
+                    <div>
+                        <span>Weight:</span>
+                        <span>{{pokemon.weight}} kg</span>
+                    </div>
+                    <div>
+                        <span>Types: </span>
+                        <div class="pokemon-type" ng-repeat="pokemonType in pokemon.types" ng-class=pokemonType.type.name>
+                            {{pokemonType.type.name}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
