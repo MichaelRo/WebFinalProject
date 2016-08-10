@@ -4,16 +4,14 @@
  * Marom Felz
  */
 
-
 // npm modules
 var path = require('path');
 var express = require('express');
 var _ = require('underscore');
-var fs = require('fs');
 var mongodb = require('mongodb');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 var passport = require('passport');
 
 // server modules
@@ -21,15 +19,15 @@ var statsModule = require('./modules/statistics/stats.js');
 var adminModule = require('./modules/admin/admin.js');
 var messagesModule = require('./modules/messages/messages.js');
 
-//We need to work with "MongoClient" interface in order to connect to a mongodb server.
-var MongoClient = mongodb.MongoClient;
+// We need to work with "MongoClient" interface in order to connect to a mongodb server.
+var mongoClient = mongodb.MongoClient;
 var app = express();
 
 // Connection URL. This is where your mongodb server is running.
 var mongoUrl = 'mongodb://localhost:27017/ads';
 
 // Use connect method to connect to the Server
-MongoClient.connect(mongoUrl, function(err, db) {
+mongoClient.connect(mongoUrl, function(err, db) {
     // if unable to connect to database
     if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -39,8 +37,6 @@ MongoClient.connect(mongoUrl, function(err, db) {
     // add middlewares
     app.use(cookieParser()); // read cookies (needed for auth)
     app.use(bodyParser()); // get information from html forms
-    //app.use(express.json());       // to support JSON-encoded bodies
-    //app.use(express.urlencoded()); // to support URL-encoded bodies
 
     // required for passport
     app.use(session({ secret: 'ads' })); // session secret
@@ -76,31 +72,16 @@ MongoClient.connect(mongoUrl, function(err, db) {
 
     // define connection event
     io.sockets.on('connection', function(client){
-
         // new client has connected
         console.log('New client connected. id: %s', client.id);
 
         //define disconnection event
-        client.on('disconnect', function()
-        {
+        client.on('disconnect', function() {
             // client has disconnected
             console.log('Client disconnected. id: %s', client.id);
         })
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // THIS WAS A HACK USED TO READ MESSAGES FROM JSON TO OBJECT IN MEMORY
 // AND CONVERT DATE STRINGS TO TIMESTAMPS FOR MONGO

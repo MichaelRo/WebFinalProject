@@ -4,9 +4,7 @@
  * Marom Felz
  */
 
-// global namespace
 var app = app || {};
-var displayTimeout;
 var messages = [];
 var socket = {};
 var screenId = 0;
@@ -15,37 +13,29 @@ var messagesRequreyNeeded = false;
 /*
  * Wireup function to connect to server and pull messages for the first time
  */
-function wireup()
-{
-    // connect using socket io
+function wireup() {
     socket = io.connect(window.location.origin);
 
     // listen to requrey neede event
-    socket.on('requeryNeeded', function(data)
-    {
-        // indicate requery needed
+    socket.on('requeryNeeded', function(data) {
         messagesRequreyNeeded = true;
     });
 
-    // get the messages to display
     getMessages();
 }
-
 
 /*
  *
  *  Extracts relevant messages to display from general messages pool by timeFrames.
  *
  */
-function getMessages()
-{
+function getMessages() {
     screenId = getUrlParameter('screen');
+
     // perform ajax request to get the data
     $.get( "/api/screen=" + screenId, function( data ) {
-
         // if a some message gotten
-        if (data && data.length > 0)
-        {
+        if (data && data.length > 0) {
             // loop through the messages to display
             displayMessages(data, 0);
         }
@@ -58,28 +48,18 @@ function getMessages()
  *  to message display length
  *
  */
-function displayMessages(messages, indexOfMessageToDisplay)
-{
-    if (messagesRequreyNeeded)
-    {
-        // reset reqoury flag
+function displayMessages(messages, indexOfMessageToDisplay) {
+    if (messagesRequreyNeeded) {
         messagesRequreyNeeded = false;
-        // refetch messages
+
         getMessages();
     }
-    else
-    {
-        // display message
+    else {
         displayMessage(messages[indexOfMessageToDisplay]);
 
-        // calculate index of next message to display (cyclic formula)
         var nextIndex = (indexOfMessageToDisplay + 1) % messages.length;
 
-        //if (nextIndex < messages.length)
-        //{
-        setTimeout(function(){
-            displayMessages(messages, nextIndex);
-        }, messages[indexOfMessageToDisplay].displayLength * 1000);
+        setTimeout(function(){ displayMessages(messages, nextIndex); }, messages[indexOfMessageToDisplay].displayLength * 1000);
     }
 }
 
@@ -88,15 +68,12 @@ function displayMessages(messages, indexOfMessageToDisplay)
  *  Manipulates the DOM tree to display the given message (Updates the HTML)
  *
  */
-function displayMessage(message)
-{
+function displayMessage(message) {
     // if we already found a css link element
-    if ($("link[rel='stylesheet']").length)
-    {
+    if ($("link[rel='stylesheet']").length) {
         $("link[rel='stylesheet']").attr("href", message.templateUrl);
     }
-    else
-    {
+    else {
         // if it doesn't exist, add it
         $("head").append("<link rel='stylesheet' type='text/css' href='" + message.templateUrl + "' />")
     }
@@ -105,8 +82,7 @@ function displayMessage(message)
     $("#textContainer").empty();
 
     // foreach text in the message add a div with the given text
-    for (i = 0; i < message.textArray.length; i++)
-    {
+    for (i = 0; i < message.textArray.length; i++) {
         $("#textContainer").append( "<div id='text_" + i + "'>" + message.textArray[i] + "</div>");
     }
 
@@ -114,8 +90,7 @@ function displayMessage(message)
     $("#videoContainer").empty();
 
     // if message contains a video
-    if (message.videoPath !== "")
-    {
+    if (message.videoPath !== "") {
         $("#videoContainer").append("<video loop autoplay>" +
                                         "<source src='" + message.videoPath + "' type=video/mp4>" +
                                     "</video>");
@@ -125,30 +100,25 @@ function displayMessage(message)
     $("#imageContainer").empty();
 
     // foreach image in the message add a img with the given path
-    for (i = 0; i < message.imageArray.length; i++)
-    {
+    for (i = 0; i < message.imageArray.length; i++) {
         $("#imageContainer").append( "<img id='image_" + i + "' src='" + message.imageArray[i] + "'></img>");
     }
 }
-
 
 /*
  *
  *  Gets the value of a url parameter
  *
  */
-function getUrlParameter(sParam)
-{
-    var sPageURL = decodeURIComponent(window.location.pathname.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
+function getUrlParameter(parameter) {
+    var urlVariables = decodeURIComponent(window.location.pathname.substring(1)).split('&'),
+        parameterName;
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+    for (var i = 0; i < urlVariables.length; i++) {
+        parameterName = urlVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+        if (parameterName[0] === parameter) {
+            return parameterName[1] === undefined ? true : parameterName[1];
         }
     }
 };
