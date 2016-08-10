@@ -1,6 +1,6 @@
 [
 {
-  "name" : "fourth message",
+  "name" : "message 4",
   "textArray": [
     "This is the first line of fourth message",
     "This is the second line of fourth message"
@@ -25,7 +25,7 @@
   ]
 },
 {
-  "name" : "third message",
+  "name" : "message 3",
   "textArray": [ ],
   "imageArray": [ ],
   "videoPath": "",
@@ -54,7 +54,7 @@
   ]
 },
 {
-  "name" : "second message",
+  "name" : "message 2",
   "textArray": [
     "This is line number 0",
     "This is line number 1",
@@ -68,7 +68,7 @@
     "This is line number 9"
   ],
   "imageArray": [
-    "http://images.mid-day.com/images/2014/nov/26Nicole-Scherzinger-1.jpg"
+    "https://media.giphy.com/media/WLXO8OZmq0JK8/giphy.gif"
   ],
   "videoPath": "",
   "screensArray": [
@@ -91,7 +91,7 @@
   ]
 },
 {
-  "name" : "first message",
+  "name" : "message 1",
   "textArray": [
     "This is the first line of text",
     "This is the second line of text",
@@ -99,10 +99,10 @@
     "This is the fourth line of text"
   ],
   "imageArray": [
-    "http://www.tahiti.com/images1/thumbs/BOBITS_Hero_Module_Thumb1_600x360.jpg",
-    "http://vignette2.wikia.nocookie.net/spongebob/images/a/a4/Spongebob_SquarePants.jpg"
+    "https://media.giphy.com/media/kg1gdKv3akAFy/giphy.gif",
+    "https://media.giphy.com/media/l41YouCUUcreUabHW/giphy.gif"
   ],
-  "videoPath": "http://techslides.com/demos/sample-videos/small.mp4",
+  "videoPath": "https://www.youtube.com/embed/ms9Cc8nCskw",
   "screensArray": [
     1,
     2
@@ -131,7 +131,7 @@
   ]
 },
 {
-  "name" : "fifth message",
+  "name" : "message 5",
   "textArray": [
     "This is line number 0",
     "This is line number 1",
@@ -142,8 +142,8 @@
     "This is line number 6"
   ],
   "imageArray": [
-    "http://www.magweb.com/picts/nm1566474.jpg",
-    "http://media1.break.com/dnet/media/376/741/2741376/c42d1fd9-75ea-4ea6-a720-12360f47d540.jpg"
+    "https://media.giphy.com/media/WJ7Tr9wi8xVe0/giphy.gif",
+    "https://media.giphy.com/media/BsKsKHpsrbVHq/giphy.gif"
   ],
   "videoPath": "",
   "screensArray": [

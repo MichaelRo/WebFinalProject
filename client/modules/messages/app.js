@@ -116,9 +116,10 @@ function displayMessage(message)
     // if message contains a video
     if (message.videoPath !== "")
     {
-        $("#videoContainer").append("<video loop autoplay>" +
-                                        "<source src='" + message.videoPath + "' type=video/mp4>" +
-                                    "</video>");
+        $("#videoContainer").append("<iframe width=\"854\" height=\"480\" src='" + message.videoPath + "?autoplay=1' frameborder=\"0\"></iframe>");
+       // $("#videoContainer").append("<video loop autoplay>" +
+       //                                 "<source src='" + message.videoPath + "' type=video/mp4>" +
+       //                             "</video>");
     }
 
     // clear all child elements
