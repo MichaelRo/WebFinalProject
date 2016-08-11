@@ -8,23 +8,17 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
     function ($scope, $uibModalInstance, initial) {
         $scope.message = cloneMessageToMessageWithDates(initial);
 
-        //
-        // Calls when modal is being closed by the OK button
-        //
+        // Modal is being closed by the OK button
         $scope.ok = function() {
             $uibModalInstance.close(cloneMessageToMessageWithTimestamps($scope.message));
         };
 
-        //
-        // Calls when modal is being closed by the Cancel button
-        //
+        // Modal is being closed by the Cancel button
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         };
 
-        /*
-         *      Adds a new timeFrame
-         */
+        // Adds a new time frame
         $scope.addTimeFrame = function() {
             $scope.message.timeFrames.push({
                 startDate: new Date(),
@@ -36,9 +30,7 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
         };
 
 
-        /*
-         *      remove timeFrame
-         */
+        // remove specific time frame
         $scope.removeTimeFrame = function(timeFrame) {
             // delete only if at least one timeFrame left
             if ($scope.message.timeFrames.length > 1) {
@@ -52,6 +44,11 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
             }
         }
 
+        /**
+         * This method clones a message with dates
+         * @param messageWithDates - The message
+         * @returns - The new message with dates
+         */
         function cloneMessageToMessageWithDates(messageWithTimestamps) {
             // Define a new variable to hold the value of the new bid
             var newMessage = {
@@ -81,7 +78,11 @@ angular.module('adminApp').controller('updateMessageController', ['$scope', '$ui
         }
 
 
-
+        /**
+         * This method clones a message with it's time stamps
+         * @param messageWithDates - The message
+         * @returns - The new message with time stamps
+         */
         function cloneMessageToMessageWithTimestamps(messageWithDates) {
             // Define a new variable to hold the value of the new bid
             var newMessage = {

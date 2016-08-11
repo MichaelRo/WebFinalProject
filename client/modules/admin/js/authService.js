@@ -7,7 +7,7 @@ angular.module('adminApp').factory('AuthService', ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
        var user = null;
 
-        // return available functions for use in controllers
+        // Return available functions for use in controllers
         return ({
             isLoggedIn: isLoggedIn,
             getUserStatus: getUserStatus,
@@ -23,11 +23,19 @@ angular.module('adminApp').factory('AuthService', ['$q', '$timeout', '$http',
             return user;
         }
 
+        /**
+         * This method login a user by username and password
+         * @param username - The username
+         * @param password - The password
+         * @returns - the result of the login process
+         */
         function login(username, password) {
             var deferred = $q.defer();
 
+            // Login to the server by post request
             $http.post('/api/login', {username: username, password: password})
                 .success(function (data, status) {
+                    // If user authorized success else reject
                     if(status === 200 && data.status){
                         user = true;
                         deferred.resolve();
@@ -43,9 +51,13 @@ angular.module('adminApp').factory('AuthService', ['$q', '$timeout', '$http',
             return deferred.promise;
         }
 
+        /**
+         * This method logout the current connected user.
+         * @returns - The result of the logout process
+         */
         function logout() {
             var deferred = $q.defer();
-
+            // Logout from server by get request
             $http.get('/api/logout')
                 .success(function (data) {
                     user = false;

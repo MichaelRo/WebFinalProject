@@ -7,22 +7,17 @@
 // setup admin controller
 angular.module('adminApp').controller('adminController', ['$scope', '$state', '$location', '$window', 'AuthService',
     function ($scope, $state, $location, $window, AuthService) {
-        /*
-         *      Handles transition between views
-         */
+        // transition between views
         $scope.go = function(state) {
             $state.go(state);
         };
 
-        // To select the messages tab by default, go the the message sub state
-        // if navigation to dashboard as conducted
+        // Select messages tab by default
         if ($state.current.name === 'dashboard') {
             $state.go('dashboard.messages');
         }
 
-        /*
-         *      Setup tabs
-         */
+        // Setup the tabs
         $scope.adminTabs = [
             {
                 heading: 'Messages',
@@ -42,24 +37,19 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
             }
         ];
 
-        /*
-         *      IsLoggedIn
-         */
+        // Is logged in
         $scope.isLoggedIn = function() {
             return AuthService.isLoggedIn();
         }
 
-        /*
-         *      Login
-         */
+        // Login form functionality
         $scope.login = function () {
-            // initial values
             $scope.error = false;
             $scope.disabled = true;
 
-            // call login from service
+            // Call login from service
             AuthService.login($scope.loginForm.username, $scope.loginForm.password)
-                // handle success
+                // Handle success
                 .then(function () {
                     $scope.error = false;
                     $scope.errorMessage = "";
@@ -67,7 +57,7 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
                     $scope.loginForm = {};
                     $state.go('dashboard');
                 })
-                // handle error
+                // Handle error
                 .catch(function () {
                     $scope.error = true;
                     $scope.errorMessage = "Invalid username or password";

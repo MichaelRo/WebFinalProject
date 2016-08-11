@@ -5,23 +5,22 @@
  */
 
 module.exports = function messagesModule(app, db, path, express, mongoDBClient, io) {
-    // setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
+    // Setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
     app.use(express.static('client/modules/messages'));
 
-    // handle main GET request and serve landing page
+    // Handle main GET request
     app.get('/screen=:screenId', function (req, res) {
         res.sendFile(path.resolve('client/modules/messages/messages.html'));
     });
 
-    // handle ajax request to serve appropriate messages using parameter routing
+    // Handle ajax request to serve appropriate messages using parameter routing
     app.get('/api/messages', function (req, res) {
-        // exit if unauthenticated
+        // Exit if unauthenticated
         if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
-        // get all messages from the database
-        // retrieve matching messages from the database by screen id
+        // Get all messages from the database
         db.collection('messages')
             .find()
             .toArray(function (err, docs) {
@@ -36,9 +35,8 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
     });
 
-    // search
     app.get('/api/messages/search', function (req, res) {
-        // exit if unauthenticated
+        // Exit if unauthenticated
         if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
@@ -57,37 +55,35 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                           "this.displayLength <= " + req.query.minDisplayLength;
         }
 
-        // get all messages from the database
-        // retrieve matching messages from the database by screen id
+        // Get messages from database filtered by query.
         db.collection('messages')
             .find({
                 $where: queryString
             })
             .toArray(function (err, docs) {
-                // if there is an error, display it
+                // If there is an error, display it
                 if (err) {
                     console.log('Unable to fetch messages from db. Error:', err);
                 }
                 else {
-                    // return messages
+                    // Return messages
                     res.json(docs);
                 }
             });
     });
 
-    // handle ajax request to serve appropriate messages using parameter routing
+    // Handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/add', function (req, res) {
         if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
         console.log('Adding message : ' + req.body);
-        // get all messages from the database
-        // retrieve matching messages from the database
+        // Add a message to the database.
         var result = db.collection('messages')
                        .insertOne(req.body)
                        .then(function (result) {
-                            // notify clients they need to update
+                            // Notify clients they need to update
                             sendRequeryNotification();
 
                             res.status(200).json({inserted: result.insertedCount > 0});
@@ -99,19 +95,18 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                        });
     });
 
-    // handle ajax request to serve appropriate messages using parameter routing
+    // Handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/delete', function (req, res) {
         if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
         }
 
         console.log('Deleting message with id : '+  req.body._id);
-        // get all messages from the database
-        // retrieve matching messages from the database
+        // Delete a message from database
         var result = db.collection('messages')
                        .removeOne({ _id: new mongoDBClient.ObjectID(req.body._id) })
                        .then(function (result) {
-                            // notify clients they need to update
+                            // Notify clients they need to update
                             sendRequeryNotification();
 
                             res.status(200).json({deleted: result.deletedCount > 0});
@@ -123,7 +118,7 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                         });
     });
 
-    // handle ajax request to serve appropriate messages using parameter routing
+    // Handle ajax request to serve appropriate messages using parameter routing
     app.post('/api/messages/update', function (req, res) {
         if (req.isUnauthenticated()) {
             res.status(401).json({reason: 'Request is unauthenticated'});
@@ -131,7 +126,7 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
         console.log('Updating message with id : '+  req.body._id);
 
-        // retrieve matching messages from the database
+        // Update a message in the database.
         var result = db.collection('messages')
                        .updateOne({ _id: new mongoDBClient.ObjectID(req.body._id) },
                        {
@@ -159,23 +154,21 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                         });
     });
 
-    // handle ajax request to serve appropriate messages using parameter routing
+    // Handle ajax request to serve appropriate messages using parameter routing
     app.get('/api/screen=:screenId', function (req, res) {
-        // fetch screen id
         var screenId = parseInt(req.params.screenId);
 
-        // get the current date
+        // Get the current date
         //var date = new Date();
 
         // FOR DEBUG PORPUSES!!!!!!
         // -----------------------
         var date = new Date(2016, 3, 11, 18, 0, 0, 0);
 
-        // get timestamp
         var timestamp = date.getTime() / 1000;
         // ------------------------
 
-        // retrieve matching messages from the database by screen id
+        // Get messages with time stamp filtering.
         db.collection('messages')
             .find({
                     screensArray: screenId,
@@ -193,12 +186,14 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
                     console.log('Fetching messages for screen %d. fetched total of %d messages.',
                                 req.params.screenId, docs.length);
 
-                    // return messages
                     res.json(docs);
                 }
             });
     })
 
+    /**
+     * Notify clients that they need to requery.
+     */
     function sendRequeryNotification() {
         io.sockets.emit('requeryNeeded', {});
     }

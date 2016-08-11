@@ -24,23 +24,17 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
             }]
         };
 
-        //
-        // Calls when modal is being closed by the OK button
-        //
+        // Modal is being closed by the OK button
         $scope.ok = function() {
             $uibModalInstance.close(cloneMessageIncludingTimestamps($scope.message));
         };
 
-        //
-        // Calls when modal is being closed by the Cancel button
-        //
+        // Modal is being closed by the Cancel button
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         };
 
-        /*
-         *      Adds a new timeFrame
-         */
+       // Adds a new time frame
         $scope.addTimeFrame = function()
         {
             $scope.message.timeFrames.push({
@@ -52,24 +46,23 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
             })
         };
 
-        /*
-         *      remove timeFrame
-         */
+        // Removes existing time frame
         $scope.removeTimeFrame = function(timeFrame) {
-            // delete only when there is at least one timeFrame left
-            if ($scope.message.timeFrames.length > 1) {
-                // find index of timeFrame to delete
-                var index = $scope.message.timeFrames.indexOf(timeFrame);
+            // Get the index of time frame to delete
+            var index = $scope.message.timeFrames.indexOf(timeFrame);
 
-                // if timeFrame found
-                if (index > -1) {
-                    $scope.message.timeFrames.splice(index, 1);
-                }
+            // If time frame found
+            if (index > -1) {
+                $scope.message.timeFrames.splice(index, 1);
             }
         }
 
+        /**
+         * This method clones a message with it's time stamps
+         * @param messageWithDates - The message
+         * @returns - The new message with time stamps
+         */
         function cloneMessageIncludingTimestamps(messageWithDates) {
-            // Define a new variable to hold the value of the new bid
             var newMessage = {
                 _id: messageWithDates._id,
                 name: messageWithDates.name,
@@ -82,7 +75,7 @@ angular.module('adminApp').controller('addMessageController', ['$scope', '$uibMo
                 timeFrames: []
             };
 
-            // parse timeFrames from date objects to timestamps
+            // Parse time frames from date objects to timestamps
             messageWithDates.timeFrames.forEach(function(timeFrame, index, timeFrames) {
                 newMessage.timeFrames.push({
                     startDate: parseInt(timeFrame.startDate.getTime() / 1000),
