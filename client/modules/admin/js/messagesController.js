@@ -175,26 +175,5 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
         };
 
-        $scope.getPokemon = function() {
-            $scope.pokemon = {};
-            $scope.pokemonID = 0;
-
-            $http({
-                method: 'GET',
-                url: ('http://pokeapi.co/api/v2/pokemon/' + $scope.pokemonName + '/')
-            }).then(function (response) {
-                $scope.pokemon = response.data;
-                $scope.pokemonIconURL = 'http://pokedream.com/pokedex/images/blackwhite/front/' + $scope.pad(response.data.id, 3) + '.png';
-            }, function (err) {
-                console.log(err);
-            });
-        }
-
-        $scope.pad = function(stringToPad, width, paddingCharacter) {
-            paddingCharacter = paddingCharacter || '0';
-            stringToPad = stringToPad + '';
-            return stringToPad.length >= width ? stringToPad : new Array(width - stringToPad.length + 1).join(paddingCharacter) + stringToPad;
-        }
-
         $scope.getMessages();
     }]);

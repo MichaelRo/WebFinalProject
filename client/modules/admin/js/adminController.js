@@ -33,6 +33,10 @@ angular.module('adminApp').controller('adminController', ['$scope', '$state', '$
                 route:   'dashboard.stats'
             },
             {
+                heading: 'Pokédex',
+                route:   'dashboard.pokedex'
+            },
+            {
                 heading: 'Logout',
                 route:   'logout'
             }

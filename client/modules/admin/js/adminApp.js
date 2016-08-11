@@ -34,6 +34,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: '../partials/stats.html',
             access: {restricted: true}
         })
+        .state('dashboard.pokedex', {
+            url: 'pokedex',
+            controller: 'pokedexController',
+            templateUrl: '../partials/pokedex.html',
+            access: {restricted: false}
+        })
         .state('dashboard.messages', {
             url: 'messages',
             controller: 'messagesController',
