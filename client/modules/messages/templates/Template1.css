@@ -5,28 +5,28 @@ body {
 
 #textContainer {
     text-align: center;
-    margin: 10px;
+    margin: 12px;
 }
 
 #imageContainer {
     text-align: center;
-    margin: 20px;
+    margin: 25px;
 }
 
 img {
     margin: 10px;
-    width: 200px;
-    height: 250px;
+    width: 320px;
+    height: 320px;
 }
 
 #text_0, #text_1, #text_2 {
     font-size: 300%;
-    color: floralwhite;
+    color: #ff0e00;
 }
 
 #text_3, #text_4, #text_5 {
     font-size: 250%;
-    color: antiquewhite;
+    color: #fa7d0f;
     -webkit-column-count: 1; /* Chrome, Safari, Opera */
     -moz-column-count: 1; /* Firefox */
     column-count: 1;
@@ -34,12 +34,12 @@ img {
 
 #text_6, #text_7 {
     font-size: 200%;
-    color: ghostwhite;
+    color: #ffe1bf;
 }
 
 #text_8, #text_9 {
     font-size: 150%;
-    color: whitesmoke;
+    color: #f5eddb;
 }
 
 #videoContainer {
