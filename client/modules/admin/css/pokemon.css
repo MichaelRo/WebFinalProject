@@ -139,3 +139,7 @@
     background-image: linear-gradient(#e898e8,#de6ede);
     border-color: #d547d5;
 }
+
+.pokemon-div {
+    color: black;
+}

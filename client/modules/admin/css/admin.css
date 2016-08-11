@@ -17,6 +17,10 @@ body {
     alignment: center;
 }
 
+input {
+    color: black;
+}
+
 .grid {
     color: black;
 }
