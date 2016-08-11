@@ -8,7 +8,6 @@
 
 // create admin sub-app
 var app = angular.module('adminApp', ['ui.bootstrap', 'ui.router', 'ui.router.tabs', 'ui.grid']);
-
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('login', {

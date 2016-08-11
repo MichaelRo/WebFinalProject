@@ -196,11 +196,5 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             return stringToPad.length >= width ? stringToPad : new Array(width - stringToPad.length + 1).join(paddingCharacter) + stringToPad;
         }
 
-        $scope.showPokemonIcon = function () {
-            if ($scope.pokemonIconURL) {
-                return { background: $scope.pokemonIconURL }
-            }
-        }
-
         $scope.getMessages();
     }]);
