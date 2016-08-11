@@ -17,9 +17,53 @@ body {
     alignment: center;
 }
 
+.pke{
+    alignment: center;
+    align-content: center;
+}
+
 .grid {
     color: black;
 }
+.black-texted-shadow-head {
+    color: black;
+    text-shadow: 1px 1px 2px #fffeff, 0 0 20px #521216, 0 0 5px #220018;
+}
+
+.white-texted-shadow-head {
+    color: white;
+    text-shadow: 1px 1px 1px #808080, 0 0 20px #8a8f91, 0 0 5px rgba(34, 0, 24, 0.04);
+}
+
+.pokBoarder {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.pokBoarder2 {
+    margin-bottom: 2%;
+    border-style: ridge;
+    border-color: white;
+}
+
+.margin-div {
+    margin: 50%;
+}
+
+.white-texted-shadow {
+    color: white;
+    text-shadow: 1px 1px 1px #808080, 0 0 5px #8a8f91, 0 0 2px #220018;
+}
+
+.black-texted-shadow {
+    color: #060606;
+    text-shadow: 1px 1px 1px #808080, 0 0 5px white, 0 0 2px rgba(255, 0, 44, 0);
+}
+
+input{
+    color: black;
+}
+
 
 h1 {
     text-align: center;
@@ -84,5 +128,3 @@ textarea {
 .align-right {
     float: right;
 }
-
-.container {float: left;}

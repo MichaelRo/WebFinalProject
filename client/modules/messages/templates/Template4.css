@@ -1,0 +1,55 @@
+body {
+    background-image: url("Pics/fractalius.jpg");
+    background-color: #cccccc;
+}
+
+#textContainer {
+    text-align: center;
+    margin: 12px;
+}
+
+#imageContainer {
+    text-align: center;
+    margin: 25px;
+}
+
+img {
+    margin: 50px;
+    width: 350px;
+    height: 350px;
+}
+
+#text_0, #text_1, #text_2 {
+    font-size: 300%;
+    color: #000eff;
+}
+
+#text_3, #text_4, #text_5 {
+    font-size: 250%;
+    color: #f9f9fa;
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+
+#text_6, #text_7 {
+    font-size: 400%;
+    color: #0decff;
+}
+
+#text_8, #text_9 {
+    font-size: 100%;
+    color: #f5eddb;
+}
+
+#videoContainer {
+    text-align: center;
+}
+
+video {
+    margin: 50px;
+    border-style: solid;
+    border-width: medium;
+    border-radius: 25px;
+    border-color: cornflowerblue;
+}

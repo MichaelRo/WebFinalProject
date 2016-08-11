@@ -108,7 +108,7 @@
     2
   ],
   "templateUrl" : "templates/Template1.css",
-  "displayLength" : 5,
+  "displayLength" : 30,
   "timeFrames": [
     {
       "startDate": 1451599200,
