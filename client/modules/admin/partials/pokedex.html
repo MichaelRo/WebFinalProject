@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="panel panel-default pokemon-div container" style="width: 35%">
+        <div class="panel-heading">
+            <span>Name: </span>
+            <input ng-model="pokemonName" placeholder="Pokémon Name">
+            <button class="btn btn-primary" type="button" ng-click="getPokemon()">Send</button>
+        </div>
+        <div class="panel-body pokemon-details" ng-if="pokemon != null">
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <img ng-src="{{pokemonIconURL}}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="pokemon-type" ng-repeat="pokemonType in pokemon.types" ng-class=pokemonType.type.name>
+                                        {{pokemonType.type.name}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div>
+                            <span>Base experience:</span>
+                            <span>{{pokemon.base_experience}} xp</span>
+                        </div>
+                        <div>
+                            <span>Height:</span>
+                            <span>{{(pokemon.height < 10) ? (pokemon.height * 10) : (pokemon.height / 10)}} {{(pokemon.height < 10) ? 'cm' : 'm'}}</span>
+                        </div>
+                        <div>
+                            <span>Weight:</span>
+                            <span>{{pokemon.weight / 10}} kg</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a ng-href="http://bulbapedia.bulbagarden.net/wiki/{{pokemon.name}}_(Pokémon)" ng-if="pokemon != null">{{pokemon.name}} on Bulbapedia</a>
+        </div>
+    </div>
+</div>

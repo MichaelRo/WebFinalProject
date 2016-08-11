@@ -6,15 +6,15 @@
 module.exports = function adminModule(app, db, path, express, passport) {
     var LocalStrategy = require('passport-local').Strategy;
 
-    // setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
+    // Setup us static middleware to serve static files along with the HTML (such as CSS and JS files)
     app.use(express.static('client/modules/admin'));
 
-    // handle main GET request and serve landing page
+    // Handle main GET request
     app.get('/admin', function (req, res) {
         res.sendFile(path.resolve('client/modules/admin/admin.html'));
     });
 
-    // setup user authentication
+    // Setup user authentication
     passport.use(new LocalStrategy(function(username, password, done) {
         db.collection('admins')
             .find({

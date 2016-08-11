@@ -4,7 +4,7 @@
  * Marom Felz
  */
 
-// setup admin controller
+// Setup admin controller
 angular.module('adminApp').controller('messagesController', ['$scope', '$http', '$uibModal', '$filter',
     function ($scope, $http, $uibModal, $filter) {
         $scope.messages = [];
@@ -34,9 +34,7 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             minDisplayLength: 0
         };
 
-        /*
-         *      Get Messages
-         */
+        // Get messages
         $scope.getMessages = function() {
             $http({
                 method: 'GET',
@@ -55,9 +53,7 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
         };
 
-        /*
-         *      Delete Message
-         */
+        // Delete specific message
         $scope.deleteMessage = function(message) {
             $http({
                 method: 'POST',
@@ -74,9 +70,7 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             });
         };
 
-        /*
-         *      Update Message
-         */
+        // Update existing message
         $scope.updateMessage = function(message) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -111,9 +105,7 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                 });
         };
 
-        /*
-         *      Add Message
-         */
+        // Add a new message
         $scope.addMessage = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -144,18 +136,14 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
                 });
         };
 
-        /*
-         *      Filter Messages
-         */
+        // Filter messages
         $scope.filterMessages = function() {
             $scope.gridOptions.data = $filter('filter')($scope.messages, $scope.searchText, undefined);
         };
 
-        /*
-         *     Search Messages
-         */
+        // Search messages by query
         $scope.searchMessages = function(queryType) {
-            // set query type
+            // Set query type
             $scope.searchParams.queryType = queryType;
 
             $http({
@@ -165,16 +153,17 @@ angular.module('adminApp').controller('messagesController', ['$scope', '$http', 
             }).then(function (messages) {
                 $scope.messages = messages.data;
 
-                // set messages as the grid's data
+                // Set messages as the grid's data
                 $scope.gridOptions.data = $scope.messages;
 
-                // apply current filter on messages
+                // Apply current filter on messages
                 $scope.filterMessages();
             }, function (err) {
                 console.log(err);
             });
         };
 
+        // Get pokemon from pokeapi
         $scope.getPokemon = function() {
             $scope.pokemon = {};
             $scope.pokemonID = 0;
