@@ -2,8 +2,8 @@
 {
   "name" : "message 4",
   "textArray": [
-    "This is the first line of fourth message",
-    "This is the second line of fourth message"
+    "I wan't to be the very best",
+    "like no one ever was."
   ],
   "imageArray": [ "https://media.giphy.com/media/ExAn6NWYYIGPu/giphy.gif" ],
   "videoPath": "",
@@ -26,7 +26,7 @@
 },
 {
   "name" : "message 3",
-  "textArray": [ ],
+  "textArray": [ "Ash Ketchum is my love" ],
   "imageArray": [ ],
   "videoPath": "",
   "screensArray": [
@@ -56,16 +56,16 @@
 {
   "name" : "message 2",
   "textArray": [
-    "This is line number 0",
-    "This is line number 1",
-    "This is line number 2",
-    "This is line number 3",
-    "This is line number 4",
-    "This is line number 5",
-    "This is line number 6",
-    "This is line number 7",
-    "This is line number 8",
-    "This is line number 9"
+    "Pikachu",
+    "Pidgey",
+    "Ratata",
+    "Geodude",
+    "Growlithe",
+    "Eevee",
+    "Dragonite",
+    "Charizard",
+    "Snorlax",
+    "Jynx"
   ],
   "imageArray": [
     "https://media.giphy.com/media/WLXO8OZmq0JK8/giphy.gif"
@@ -93,10 +93,10 @@
 {
   "name" : "message 1",
   "textArray": [
-    "This is the first line of text",
-    "This is the second line of text",
-    "This is the third line of text",
-    "This is the fourth line of text"
+    "Garry",
+    "Professor Oak",
+    "Misty",
+    "Brock"
   ],
   "imageArray": [
     "https://media.giphy.com/media/kg1gdKv3akAFy/giphy.gif",
@@ -133,13 +133,9 @@
 {
   "name" : "message 5",
   "textArray": [
-    "This is line number 0",
-    "This is line number 1",
-    "This is line number 2",
-    "This is line number 3",
-    "This is line number 4",
-    "This is line number 5",
-    "This is line number 6"
+    "Marom Felz, Pokemon trainer 0528764516",
+    "Best trainer you can get",
+    "only 10$ per hour."
   ],
   "imageArray": [
     "https://media.giphy.com/media/WJ7Tr9wi8xVe0/giphy.gif",
