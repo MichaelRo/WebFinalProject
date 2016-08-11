@@ -143,3 +143,8 @@
 .pokemon-div {
     color: black;
 }
+
+.pokemon-details {
+    text-align: left;
+    color: black;
+}
