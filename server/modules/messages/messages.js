@@ -45,13 +45,13 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
         var queryString = "";
 
         if (queryType === "min") {
-            queryString = "this.textArr.length >= " + req.query.textFieldsCount + " && " +
-                          "this.imageArr.length >= " + req.query.imageFieldsCount + " && " +
+            queryString = "this.textArray.length >= " + req.query.textFieldsCount + " && " +
+                          "this.imageArray.length >= " + req.query.imageFieldsCount + " && " +
                           "this.displayLength >= " + req.query.minDisplayLength;
         }
         else if (queryType === "max") {
-            queryString = "this.textArr.length <= " + req.query.textFieldsCount + " || " +
-                          "this.imageArr.length <= " + req.query.imageFieldsCount + " || " +
+            queryString = "this.textArray.length <= " + req.query.textFieldsCount + " || " +
+                          "this.imageArray.length <= " + req.query.imageFieldsCount + " || " +
                           "this.displayLength <= " + req.query.minDisplayLength;
         }
 
@@ -146,7 +146,6 @@ module.exports = function messagesModule(app, db, path, express, mongoDBClient, 
 
                             // success
                             res.status(200).json({updated: result.modifiedCount > 0});
-
                         }, function (error) {
                             console.log(error);
 

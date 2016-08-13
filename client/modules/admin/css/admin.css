@@ -13,13 +13,11 @@ body {
     background-color: #cccccc;
     color: white;
 
-    text-align: center;
-    alignment: center;
 }
 
 .pke{
+    text-align: center;
     alignment: center;
-    align-content: center;
 }
 
 .grid {
@@ -44,6 +42,10 @@ body {
     margin-bottom: 2%;
     border-style: ridge;
     border-color: white;
+    -webkit-box-shadow: 0px 9px 90px 5px rgba(0,0,0,0.49);
+    -moz-box-shadow: 0px 9px 90px 5px rgba(0,0,0,0.49);
+    box-shadow: 0px 9px 90px 5px rgba(0,0,0,0.49);
+    border-spacing: 3px 3px;
 }
 
 .margin-div {
@@ -60,15 +62,42 @@ body {
     text-shadow: 1px 1px 1px #808080, 0 0 5px white, 0 0 2px rgba(255, 0, 44, 0);
 }
 
+
+
 input{
     color: black;
 }
+
+/** input[type="text"] {
+    border: 1px solid #ddd;
+    padding: 6px;
+    font-size: 18px;
+    width: 200px;
+    text-transform: uppercase;
+    top: 30px;
+    left: 130px;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100px;
+    border: 0;
+    line-height: 35px;
+    height: 35px;
+    color: #fff;
+    background: mediumpurple;
+    font-size: 18px;
+    top: 30px;
+    left: 350px;
+    cursor: pointer;
+}
+**/
 
 
 h1 {
     text-align: center;
     alignment: center;
-    margin-left: 20%;
+    margin-left: 25%;
     color: white;
     text-shadow: 1px 1px 2px #ffd0ce, 0 0 25px #ff3b3d, 0 0 5px darkred;
 
@@ -106,13 +135,36 @@ textarea {
     z-index: 10;
     height: 3em;
     margin-top: -3em;
-    margin-left: 3%;
+    margin-left: 30%;
     color: white;
     text-shadow: 2px 2px 5px red;
 }
 
+#container {
+    position:relative;
+    background-color:#cce;
+    margin: 0 auto;
+    min-height:100%;
+}
+
+#header {
+    width: 1024px;
+    height:100px;
+    position: relative;
+    background-color: #CCC;
+}
+
+#content{
+    height:100%;
+    width:1250px;
+}
+
+
 #body {
     padding-bottom:60px;   /* Height of the footer */
+    -webkit-align-content: center;
+    align-content: center;
+
 }
 
 #logo {
@@ -123,8 +175,4 @@ textarea {
 #logo:hover {
     width: 30px;
     height: 30px;
-}
-
-.align-right {
-    float: right;
 }

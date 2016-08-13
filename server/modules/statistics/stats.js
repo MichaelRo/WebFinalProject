@@ -32,7 +32,7 @@ module.exports = function statsModule(app, db, path, express) {
                                 "timeFrames.daysInWeek": innerIndex
                                 }
                             ).then(function (count) {
-                                data += template.replace('templates/', 'Template ')
+                                data += template.replace('templates/', '')
                                         .replace('.css', '')
                                     + "-" + day + ","
                                     + count

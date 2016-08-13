@@ -27,6 +27,11 @@ body {
     padding: 10px 0 0 3px;
 }
 
+.white-texted-shadow {
+    color: white;
+    text-shadow: 1px 1px 1px #808080, 0 0 5px #8a8f91, 0 0 2px #220018;
+}
+
 #sequence text, #legend text {
     font-weight: 600;
     fill: white;
@@ -46,10 +51,11 @@ body {
     left: 305px;
     width: 140px;
     text-align: center;
-    color: #666;
+    color: white;
     z-index: -1;
 }
 
 #percentage {
     font-size: 2.5em;
+    color: white;
 }

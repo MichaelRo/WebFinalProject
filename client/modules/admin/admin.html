@@ -47,6 +47,8 @@
     <script src="js/updateMessageController.js"></script>
     <script src="js/addMessageController.js"></script>
     <script src="js/statsController.js"></script>
+    <script src="js/animation.js"></script>
+
 
     <!-- Scripts for statistics module -->
     <script src="js/d3.min.js"></script>
@@ -54,24 +56,24 @@
     <script src="js/sequences.js"></script>
 
 </head>
-<body style="width: 100%">
+<body>
 
     <header>
-        <h1>
+        <h1 align="center">
             <canvas width="25" height="25" id="logo"></canvas>
             Administrator Dashboard
         </h1>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid row">
         <div id="body">
-            <section id="content">
+            <section id="content" class="col-lg-12">
                 <div ui-view></div>
             </section>
         </div>
         <div id="footer">
             <footer>
-               Michael Roytman,Itay Desalto, Marom Felz © All Rights resereved
+               <h6 align="center"> Michael Roytman,Itay Desalto, Marom Felz © All Rights resereved</h6>
             </footer>
         </div>
     </div>

@@ -1,44 +1,44 @@
-<div class="modal-header  black-texted-shadow-head">
-    <h3 class="modal-title">Message Details</h3>
+<div class="modal-header  black-texted-shadow-head pke">
+    <h3 class="modal-title">Message Info</h3>
 </div>
 <div class="modal-body">
     <div class="container-fluid black-texted-shadow">
         <div>
-            <span class="col-md-2">Name:</span>
+            <span class="col-md-2">Name</span>
             <input type="text" ng-model="message.name" class="col-md-10" required>
         </div>
 
         <div>
-            <span class="col-md-2">Texts:</span>
+            <span class="col-md-2">Texts</span>
             <textarea class="col-md-10"
-                      ng-model="message.textArr"
+                      ng-model="message.textArray"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
 
         <div>
-            <span class="col-md-2">Video:</span>
+            <span class="col-md-2">Video</span>
             <input type="text" ng-model="message.videoPath" class="col-md-10" required>
         </div>
 
         <div>
-            <span class="col-md-2">Images:</span>
+            <span class="col-md-2">Images</span>
             <textarea class="col-md-10"
-                      ng-model="message.imageArr"
+                      ng-model="message.imageArray"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
 
         <div>
-            <span class="col-md-2">Screens:</span>
+            <span class="col-md-2">Screens</span>
             <textarea class="col-md-10"
-                      ng-model="message.screensArr"
+                      ng-model="message.screensArray"
                       ng-list="&#10;"
                       ng-trim="false"></textarea>
         </div>
 
         <div>
-            <span class="col-md-2">Template URL:</span>
+            <span class="col-md-2">Template</span>
             <select name="singleSelect" ng-model="message.templateUrl" class="col-md-10" required>
                 <option value="templates/Template1.css">Template 1</option>
                 <option value="templates/Template2.css">Template 2</option>
@@ -48,16 +48,16 @@
         </div>
 
         <div>
-            <span class="col-md-2">Display Length:</span>
+            <span class="col-md-2 -bold">Display Length</span>
             <input type="number" min="1" max="100" step="1" ng-model="message.displayLength" class="col-md-10">
         </div>
 
         <div>
             <span class="col-md-2">
-                TimeFrames:
+                TimeFrames
             </span>
-            <aside>
-                <a href="" ng-click="addTimeFrame()" class="btn btn-success btn-xs command-button">
+            <aside class="col-md-10">
+                <a href="" ng-click="addTimeFrame()" class="btn btn-success btn-xs command-button -align-left">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </aside>
@@ -65,28 +65,28 @@
                 <div class="panel" ng-repeat="timeFrame in message.timeFrames" >
                     <a href=""
                        ng-click="removeTimeFrame(timeFrame)"
-                       class="btn btn-danger btn-xs command-button"
+                       class="btn btn-danger btn-xs command-button -align-right"
                        ng-disabled="message.timeFrames.length <= 1">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
                     <div>
-                        <span class="col-md-2">From date:</span>
+                        <span class="col-md-2">From date</span>
                         <input type="date" ng-model="timeFrame.startDate" class="date-element"/>
                     </div>
                     <div>
-                        <span class="col-md-2">From time:</span>
+                        <span class="col-md-2">From time</span>
                         <input type="number" min="1" max="23" step="1" ng-model="timeFrame.startTime"/>
                     </div>
                     <div>
-                        <span class="col-md-2">To date:</span>
+                        <span class="col-md-2">To date</span>
                         <input type="date" ng-model="timeFrame.endDate" class="date-element"/>
                     </div>
                     <div>
-                        <span class="col-md-2">To time:</span>
+                        <span class="col-md-2">To time</span>
                         <input type="number" min="1" max="23" step="1" ng-model="timeFrame.endTime"/>
                     </div>
                     <div>
-                        <span class="col-md-2">Days in week:</span>
+                        <span class="col-md-2">Days in week</span>
                         <textarea
                                   ng-model="timeFrame.daysInWeek"
                                   ng-list="&#10;"
