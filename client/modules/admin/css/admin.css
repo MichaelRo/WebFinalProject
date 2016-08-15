@@ -15,6 +15,35 @@ body {
 
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #490001;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+nav {
+    display: block;
+}
+
 .pke{
     text-align: center;
     alignment: center;
@@ -68,36 +97,11 @@ input{
     color: black;
 }
 
-/** input[type="text"] {
-    border: 1px solid #ddd;
-    padding: 6px;
-    font-size: 18px;
-    width: 200px;
-    text-transform: uppercase;
-    top: 30px;
-    left: 130px;
-}
-
-input[type="submit"] {
-    display: block;
-    width: 100px;
-    border: 0;
-    line-height: 35px;
-    height: 35px;
-    color: #fff;
-    background: mediumpurple;
-    font-size: 18px;
-    top: 30px;
-    left: 350px;
-    cursor: pointer;
-}
-**/
-
 
 h1 {
     text-align: center;
     alignment: center;
-    margin-left: 25%;
+    margin-left: 30%;
     color: white;
     text-shadow: 1px 1px 2px #ffd0ce, 0 0 25px #ff3b3d, 0 0 5px darkred;
 
@@ -168,11 +172,12 @@ textarea {
 }
 
 #logo {
-    -webkit-transition: width 2s; /* Safari */
-    transition: width 2s;
+    -webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s, height 4s;
+    margin-left: 63%
 }
 
 #logo:hover {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
 }
